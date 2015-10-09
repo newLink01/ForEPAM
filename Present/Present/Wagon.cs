@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace Present
 {
-    class Program
+    class Wagon
     {
-        static void Main(string[] args)
-        {
-
-
-
-
-            Console.ReadLine();
-        }
     }
 }
