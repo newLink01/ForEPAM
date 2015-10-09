@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Present
+namespace Salad
 {
-    interface ICommon
+    class Program
     {
-        string Type { set; get; }
+        static void Main(string[] args)
+        {
 
 
-
-
+        }
     }
 }
