@@ -10,15 +10,15 @@ namespace Present
     {
         
         public Comparison<material> ComparisonDelegate;
-        private List<material> sweetColletion;
+        private List<material> sweetColleсtion;
         private double presentWeight;
         public PresentCollection(int presentWeight) {
-            this.sweetColletion = new List<material>();
+            this.sweetColleсtion = new List<material>();
             this.presentWeight = presentWeight;
             ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories);
         }
         public int Count {
-            get{return this.sweetColletion.Count;}
+            get{return this.sweetColleсtion.Count;}
         }
         public bool IsReadOnly {
             get{return false;}
@@ -27,23 +27,23 @@ namespace Present
 
             if ((this.presentWeight += obj.Weight) <= this.presentWeight)
             {
-                this.sweetColletion.Add(obj);
+                this.sweetColleсtion.Add(obj);
             }
 
             else { Console.WriteLine("Excess weight"); return; }
 
         }
         public void Clear() {
-            this.sweetColletion.Clear();
+            this.sweetColleсtion.Clear();
         }
         public bool Contains(material obj) {
-            return this.sweetColletion.Contains(obj);
+            return this.sweetColleсtion.Contains(obj);
         }
         public void CopyTo(material [] arr, int arrayIndex) {
-            this.sweetColletion.CopyTo(arr, arrayIndex);
+            this.sweetColleсtion.CopyTo(arr, arrayIndex);
         }
         public bool Remove(material obj) {
-            return this.sweetColletion.Remove(obj);
+            return this.sweetColleсtion.Remove(obj);
         }
 
 
@@ -55,22 +55,24 @@ namespace Present
             return -1;
             }
         public void CompareSweets(Comparison<material> CompDelegate) {
-            this.sweetColletion.Sort(CompDelegate);
+            this.sweetColleсtion.Sort(CompDelegate);
        }
         public int FindSweetBySugar(double left,double right) { //возвращает индекс конфеты
 
-            for(int i = 0;i<this.sweetColletion.Count;i++){
-                if(this.sweetColletion[i].Sugar>=left && this.sweetColletion[i].Sugar<=right){
+            for(int i = 0;i<this.sweetColleсtion.Count;i++){
+                if(this.sweetColleсtion[i].Sugar>=left && this.sweetColleсtion[i].Sugar<=right){
                     return i;
                 }
             }
             return -1;
             }
 
-        public IEnumerator GetEnumerator() {
-            return this.sweetColletion.GetEnumerator();
+        public IEnumerator<material> GetEnumerator() {
+            return this.sweetColleсtion.GetEnumerator();
         }
-     
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+            return this.sweetColleсtion.GetEnumerator();
+        }
        
         }
 
