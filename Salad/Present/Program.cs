@@ -16,7 +16,8 @@ namespace Present
     {
         static void Main(string[] args)
         {
-          
+            PresentCollection<ISweet> col = new PresentCollection<ISweet>(50);
+            
             
 
 
