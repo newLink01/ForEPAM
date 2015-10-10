@@ -12,15 +12,13 @@ namespace Present
         public Comparison<material> ComparisonDelegate;
         private List<material> sweetColletion;
         private double presentWeight;
-
-
         public PresentCollection(int presentWeight) {
             this.sweetColletion = new List<material>();
             this.presentWeight = presentWeight;
             ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories);
         }
-        public int Count() {
-            return this.sweetColletion.Count;
+        public int Count {
+            get{return this.sweetColletion.Count;}
         }
         public bool IsReadOnly {
             get{return false;}
@@ -59,7 +57,6 @@ namespace Present
         public void CompareSweets(Comparison<material> CompDelegate) {
             this.sweetColletion.Sort(CompDelegate);
        }
-
         public int FindSweetBySugar(double left,double right) { //возвращает индекс конфеты
 
             for(int i = 0;i<this.sweetColletion.Count;i++){
@@ -69,8 +66,12 @@ namespace Present
             }
             return -1;
             }
-            
 
+        public IEnumerator GetEnumerator() {
+            return this.sweetColletion.GetEnumerator();
+        }
+     
+       
         }
 
     }
