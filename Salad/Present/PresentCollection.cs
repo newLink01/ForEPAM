@@ -11,12 +11,14 @@ namespace Present
         
         public Comparison<material> ComparisonDelegate;
         private List<material> sweetColleсtion;
-        private double presentWeight;
-
-        public PresentCollection(int presentWeight) {
+        public double maxPresentWeight;
+        public double currentPresentWeight;
+        public PresentCollection(int maxPresentWeight) {
             this.sweetColleсtion = new List<material>();
-            this.presentWeight = presentWeight;
+            this.maxPresentWeight = maxPresentWeight;
+            this.currentPresentWeight = 0;
             ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories); //по дефолту можно сравнивать по каллориям
+          
         }
         public int Count {
             get{return this.sweetColleсtion.Count;}
@@ -26,12 +28,13 @@ namespace Present
         }
         public void Add(material obj) {
 
-            if ((this.presentWeight += obj.Weight) <= this.presentWeight)
+            if ((this.currentPresentWeight + obj.Weight) <= this.maxPresentWeight)
             {
                 this.sweetColleсtion.Add(obj);
+                this.currentPresentWeight += obj.Weight;
             }
 
-            else { Console.WriteLine("Excess weight"); return; }
+            else { Console.WriteLine("You can't add more. Exceeding the maximum weight..."); return; }
 
         }
         public void Clear() {
@@ -47,11 +50,7 @@ namespace Present
             return this.sweetColleсtion.Remove(obj);
         }
 
-        public material this[int index] {
-            set { this.sweetColleсtion[index] = value; }
-            get { return this.sweetColleсtion[index]; }
-        }
-
+       
 
 
         public int ComparerbyCalories(material obj1, material obj2) {
@@ -70,14 +69,13 @@ namespace Present
             return;
        }
 
-        public int FindSweetBySugar(double left,double right) { //возвращает индекс конфеты
+        public void FindSweetsBySugar(double left,double right) { //возвращает индекс конфеты
 
             for(int i = 0;i<this.sweetColleсtion.Count;i++){
                 if(this.sweetColleсtion[i].Sugar>=left && this.sweetColleсtion[i].Sugar<=right){
-                    return i;
+                    Console.WriteLine(this.sweetColleсtion[i].Name + " Sugar : " + this.sweetColleсtion[i].Sugar);
                 }
             }
-            return -1;
             }
 
         public IEnumerator<material> GetEnumerator() {
