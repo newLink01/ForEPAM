@@ -24,7 +24,7 @@ namespace Present
             //present.Add(new Chocolate(50, 10, 300, "Milka", ChocolateTypes.withoutFilling, ChocolateForms.StickOfChocolate, Tastes.milk));
 
 
-            Console.WriteLine(present.currentPresentWeight);
+           // Console.WriteLine(present.currentPresentWeight);
 
 
             #region

@@ -11,8 +11,8 @@ namespace Present
         
         public Comparison<material> ComparisonDelegate;
         private List<material> sweetColleсtion;
-        public double maxPresentWeight;
-        public double currentPresentWeight;
+        private double maxPresentWeight;
+        private double currentPresentWeight;
         public PresentCollection(int maxPresentWeight) {
             this.sweetColleсtion = new List<material>();
             this.maxPresentWeight = maxPresentWeight;
