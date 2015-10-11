@@ -12,6 +12,7 @@ namespace Present
         double Sugar { set; get; }
         double Weight { set; get; }
         string Name { set; get; }
+        Tastes Taste { set; get; }
 
     }
     

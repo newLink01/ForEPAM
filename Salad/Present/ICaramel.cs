@@ -10,6 +10,5 @@ namespace Present
     interface ICaramel : ISweet
     {
         CaramelTypes CaramelType { set; get; }
-        Tastes CaramelTaste { set; get; }
     }
 }

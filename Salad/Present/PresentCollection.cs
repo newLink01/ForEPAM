@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using System.Collections;
 namespace Present
 {
-    class PresentCollection<material> : ICollection<material>  where material: ISweet                           
+    class PresentCollection<material> : ICollection<material> where material: ISweet                           
     {
         
         public Comparison<material> ComparisonDelegate;
         private List<material> sweetColleсtion;
         private double presentWeight;
+
         public PresentCollection(int presentWeight) {
             this.sweetColleсtion = new List<material>();
             this.presentWeight = presentWeight;
-            ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories);
+            ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories); //по дефолту можно сравнивать по каллориям
         }
         public int Count {
             get{return this.sweetColleсtion.Count;}
@@ -46,17 +47,29 @@ namespace Present
             return this.sweetColleсtion.Remove(obj);
         }
 
+        public material this[int index] {
+            set { this.sweetColleсtion[index] = value; }
+            get { return this.sweetColleсtion[index]; }
+        }
 
 
 
         public int ComparerbyCalories(material obj1, material obj2) {
-            if (obj1.Calories > obj2.Calories)  return 1; 
-            if(obj1.Calories == obj2.Calories) return 0;
-            return -1;
+            return obj1.Calories.CompareTo(obj2.Calories);
             }
-        public void CompareSweets(Comparison<material> CompDelegate) {
-            this.sweetColleсtion.Sort(CompDelegate);
+        public int ComparerByWeight(material obj1, material obj2) {
+
+            return obj1.Weight.CompareTo(obj2.Weight);
+
+        }
+        public void SortSweets() {
+            if (this.ComparisonDelegate != null)
+            {
+                this.sweetColleсtion.Sort(this.ComparisonDelegate);
+            }
+            return;
        }
+
         public int FindSweetBySugar(double left,double right) { //возвращает индекс конфеты
 
             for(int i = 0;i<this.sweetColleсtion.Count;i++){
