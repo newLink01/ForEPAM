@@ -9,17 +9,20 @@ namespace Present
     class PresentCollection<material> : ICollection<material> where material: ISweet                           
     {
         
-        public Comparison<material> ComparisonDelegate;
-        private List<material> sweetColleсtion;
+       // public Comparison<material> ComparisonDelegate;
+        private ICollection<material> sweetColleсtion;
         private double maxPresentWeight;
         private double currentPresentWeight;
-        public PresentCollection(int maxPresentWeight) {
-            this.sweetColleсtion = new List<material>();
+        public PresentCollection(){}
+        public PresentCollection(ICollection<material> arr, int maxPresentWeight, int currentPresentWeight)
+        { // объект передать как параметр , вынести проверки в статический класс
+            this.sweetColleсtion = arr;// new List<material>();
             this.maxPresentWeight = maxPresentWeight;
-            this.currentPresentWeight = 0;
-            ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories); //по дефолту можно сравнивать по каллориям
+            this.currentPresentWeight = currentPresentWeight;
+            /*ComparisonDelegate = new Comparison<material>(this.ComparerbyCalories); *///по дефолту можно сравнивать по каллориям
           
         }
+        #region
         public int Count {
             get{return this.sweetColleсtion.Count;}
         }
@@ -53,27 +56,28 @@ namespace Present
        
 
 
-        public int ComparerbyCalories(material obj1, material obj2) {
+        /*public int ComparerbyCalories(material obj1, material obj2) {
             return obj1.Calories.CompareTo(obj2.Calories);
             }
         public int ComparerByWeight(material obj1, material obj2) {
 
             return obj1.Weight.CompareTo(obj2.Weight);
 
-        }
-        public void SortSweets() {
+        }*/
+       /* public void SortSweets() { //сделать копию
             if (this.ComparisonDelegate != null)
             {
                 this.sweetColleсtion.Sort(this.ComparisonDelegate);
             }
             return;
-       }
+       }*/
 
-        public void FindSweetsBySugar(double left,double right) { //возвращает индекс конфеты
+        public void FindSweetsBySugar(double left,double right) { 
 
             for(int i = 0;i<this.sweetColleсtion.Count;i++){
-                if(this.sweetColleсtion[i].Sugar>=left && this.sweetColleсtion[i].Sugar<=right){
-                    Console.WriteLine(this.sweetColleсtion[i].Name + " Sugar : " + this.sweetColleсtion[i].Sugar);
+                if(this.sweetColleсtion.ElementAt<material>(i).Sugar>=left && this.sweetColleсtion.ElementAt<material>(i).Sugar<=right){
+                    Console.WriteLine(this.sweetColleсtion.ElementAt<material>(i).Name + " Sugar : " + this.sweetColleсtion.ElementAt<material>(i).Sugar);
+                    
                 }
             }
             }
@@ -85,6 +89,7 @@ namespace Present
             return this.sweetColleсtion.GetEnumerator();
         }
        
+#endregion
         }
 
     }

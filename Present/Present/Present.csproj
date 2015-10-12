@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Caramel.cs" />
     <Compile Include="Chocolate.cs" />
+    <Compile Include="Comparators.cs" />
     <Compile Include="ICaramel.cs" />
     <Compile Include="IChocolate.cs" />
     <Compile Include="ISweet.cs" />

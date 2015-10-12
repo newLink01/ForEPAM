@@ -16,10 +16,10 @@ namespace Present
     {
         static void Main(string[] args)
         {
-            PresentCollection<ISweet> present = new PresentCollection<ISweet>(200);
+           // PresentCollection<ISweet> present = new PresentCollection<ISweet>(200);
 
-            present.Add(new Chocolate(200, 20, 100, "AlpenGold", ChocolateTypes.filled, ChocolateForms.StickOfChocolate, Tastes.nut));
-            present.Add(new Caramel(100, 15, 10, "caramelka", CaramelTypes.lollipop, Tastes.grape));
+           /* present.Add(new Chocolate(200, 20, 100, "AlpenGold", ChocolateTypes.filled, ChocolateForms.StickOfChocolate, Tastes.nut));
+            present.Add(new Caramel(100, 15, 10, "caramelka", CaramelTypes.lollipop, Tastes.grape));*/
            // present.Add(new Chocolate(50, 10, 300, "Milka", ChocolateTypes.withoutFilling, ChocolateForms.StickOfChocolate, Tastes.milk));
             //present.Add(new Chocolate(50, 10, 300, "Milka", ChocolateTypes.withoutFilling, ChocolateForms.StickOfChocolate, Tastes.milk));
 
@@ -31,7 +31,7 @@ namespace Present
             
 
 
-            present.ComparisonDelegate -= present.ComparerbyCalories; //по дефолтку стоят каллории
+          /*  present.ComparisonDelegate -= present.ComparerbyCalories; //по дефолтку стоят каллории
             present.ComparisonDelegate += present.ComparerByWeight;
             present.SortSweets();
 
@@ -45,7 +45,7 @@ namespace Present
             Console.WriteLine();
             present.FindSweetsBySugar(10,15);
             //Console.WriteLine(present[present.FindSweetBySugar(5,11)].Name); // конфету находим по содержанию сахара
-            Console.WriteLine();
+            Console.WriteLine();*/
 
 
             #endregion
