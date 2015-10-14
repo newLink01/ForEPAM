@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.Collections;
 namespace Present
 {
-    class PresentCollection<material, Collection> where material:ISweet
-                                                  where Collection : ICommon<material>
+    class PresentCollection<material,Collection> where material:ISweet
+                                                 where Collection:ICollection<material>
+                                                 
                                                                       
            //Collection<material> where material: ISweet where Collection : ICollection<material>, ICloneable                           
     { //сделать наследование от icollection  и Iclonable в 1 интерфейс и записать вместо Collection
         
 //        public IComparer<material> ComparisonDelegate{get;set;}
-        private readonly ICollection<material> sweetColleсtion;
+        private ICollection<material> sweetColleсtion;
         private double maxPresentWeight;
 
         public double MaxPresentWeight
@@ -29,12 +30,12 @@ namespace Present
         }
         
         public PresentCollection(){}
-        public PresentCollection(ICollection<material> arr, int maxPresentWeight, IComparer<material> comparer = null)
+        public PresentCollection(Collection col,int maxPresentWeight, IComparer<material> comparer = null)
         {
-            this.sweetColleсtion = arr;// new List<material>();
+           
+            this.sweetColleсtion = col;
             this.maxPresentWeight = maxPresentWeight;
-            //this.currentPresentWeight = 
-
+          
             foreach (var c in this.sweetColleсtion) {
                 this.currentPresentWeight += c.Weight;
             }
@@ -75,14 +76,16 @@ namespace Present
             return cloneCollection;
         }
 
-
-     
-        public void SortSweets<T>(Func<material,T> keySelector, IComparer<T> comparer) { //сделать копию
+        public void SortSweets<mat,T>(Func<material,T> keySelector, IComparer<T> comparer) { //сделать копию первое - по чему сортить , второе - чем сортить
 
             ICollection<material> copy = this.Clone() as ICollection<material>;
 
-                 this.sweetColleсtion = this.sweetColleсtion.OrderBy(x=>keySelector(x), comparer).ToList();
-             
+            if (copy != null) {
+              copy = copy.OrderBy(i=>keySelector(i),comparer).ToList();
+            }
+           
+            this.sweetColleсtion = copy;
+               //  this.sweetColleсtion = this.sweetColleсtion.OrderBy(x=>keySelector(x), comparer).ToList();
              return;
         }
         
@@ -107,11 +110,11 @@ namespace Present
 
         public IEnumerator<material> GetEnumerator() {
             return this.sweetColleсtion.GetEnumerator();
-        }
+        }/*
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
-       
+       */
 #endregion
         }
 
