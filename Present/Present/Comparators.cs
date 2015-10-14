@@ -21,7 +21,9 @@ namespace Present
         }
 
 
-       // public ISweet SetMethodsInCompDelegate { set { compDelegate = value; } }
+       static public Comparison<ISweet> SetMethodsInCompDelegate { set { compDelegate = value; } }
+
+
         static void AddMethod(int ComparerBy) { 
           
         }
