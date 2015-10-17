@@ -27,12 +27,18 @@ namespace Present
         public PresentCollection(){}
         public PresentCollection(ICollection<material> col,int maxPresentWeight)
         {
-            this.sweetColleсtion = col;
-            this.maxPresentWeight = maxPresentWeight;
-          
-            foreach (var c in this.sweetColleсtion) {
-                this.currentPresentWeight += c.Weight;
+            if (col != null)
+                this.sweetColleсtion = col;
+            if (col == null) {
+                this.sweetColleсtion = new List<material>();
             }
+                this.maxPresentWeight = maxPresentWeight;
+
+                foreach (var c in this.sweetColleсtion)
+                {
+                    this.currentPresentWeight += c.Weight;
+                }
+            
         }
         #region
         public int Count {
@@ -66,8 +72,6 @@ namespace Present
             return this.sweetColleсtion.Remove(obj);
         }
 #endregion
-        
-
         public void SortSweets(Comparison<material> compDelegate) {
 
             lock (this.sweetColleсtion)
@@ -92,7 +96,6 @@ namespace Present
                 }
             }
             }
-
         public void ShowAllSweets() {
  
             foreach(material m in this.sweetColleсtion){
@@ -100,7 +103,6 @@ namespace Present
                 
             }
         }
-
         public IEnumerator<material> GetEnumerator() {
             return this.sweetColleсtion.GetEnumerator();
         }
