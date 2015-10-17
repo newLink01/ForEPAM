@@ -53,6 +53,7 @@ namespace Present
 
         }
         public void Clear() {
+            this.CurrentPresentWeight = 0;
             this.sweetColleсtion.Clear();
         }
         public bool Contains(material obj) {
@@ -72,14 +73,15 @@ namespace Present
             lock (this.sweetColleсtion)
             {
               List<material> copy = this.sweetColleсtion.ToList();
-               copy.Sort(compDelegate);
-
-
-               this.sweetColleсtion.Clear();
-               this.CurrentPresentWeight = 0;
-               foreach (var c in copy) {
-                   this.Add(c);
-               }
+              if (compDelegate != null)
+              {
+                  copy.Sort(compDelegate);
+                  this.Clear();
+                  foreach (var c in copy)
+                  {
+                      this.Add(c);
+                  }
+              }
             }
         }
         public void FindSweetsBySugar(double left,double right) { 

@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Present
 {
-   static class Comparators
+   static class ComparatorsForISweet
     {
         private static Comparison<ISweet> compDelegate;
         internal static Comparison<ISweet> CompDelegate
         {
-            get { return Comparators.compDelegate; }
-            set { Comparators.compDelegate = value; }
+            get { return ComparatorsForISweet.compDelegate; }
+            set { ComparatorsForISweet.compDelegate = value; }
         }
-
         public static int WeightCompare(ISweet obj1,ISweet obj2){
             if(obj1.Weight>obj2.Weight){return 1;}
             if(obj1.Weight<obj2.Weight){return -1;}
@@ -24,8 +23,6 @@ namespace Present
             if (obj1.Calories > obj2.Calories) { return 1; }
             if (obj1.Calories < obj2.Calories) { return -1; }
             else return 0;
-        }
-
-       
+        }      
     }
 }

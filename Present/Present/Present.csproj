@@ -43,10 +43,9 @@
   <ItemGroup>
     <Compile Include="Caramel.cs" />
     <Compile Include="Chocolate.cs" />
-    <Compile Include="Comparators.cs" />
+    <Compile Include="ComparatorsForISweet.cs" />
     <Compile Include="ICaramel.cs" />
     <Compile Include="IChocolate.cs" />
-    <Compile Include="ICommon.cs" />
     <Compile Include="ISweet.cs" />
     <Compile Include="PresentCollection.cs" />
     <Compile Include="Program.cs" />
