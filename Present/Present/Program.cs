@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Present
 {
@@ -11,33 +12,28 @@ namespace Present
     enum ChocolateTypes { withoutFilling,filled };
     enum ChocolateForms { StickOfChocolate,sweet};
 
-    class first {
-        public int per;
-            public int asd;
-    }
-    class second :first{
-        public string str;
-    }
-
-
     class Program
     {
         
          static void Main(string[] args)
         {
-            List<ISweet> arr = new List<ISweet>();
-            PresentCollection<ISweet,List<ISweet>> present = new PresentCollection<ISweet,List<ISweet>>(arr, 300);
-            present.Add(new Chocolate(50,20,100,"AlpenGold",ChocolateTypes.filled,ChocolateForms.StickOfChocolate,Tastes.mandarin));
-            present.Add(new Chocolate(50, 20, 30, "Milka", ChocolateTypes.filled, ChocolateForms.StickOfChocolate, Tastes.mandarin));
 
+            PresentCollection<ISweet> present = new PresentCollection<ISweet>(new List<ISweet>(),200);
             
-            foreach (var c in present) { Console.WriteLine(c.Weight + " Name :" + c.Name); }
+             present.Add(new Chocolate(20,30,100,"AlpenGold",ChocolateTypes.filled,ChocolateForms.StickOfChocolate,Tastes.nut));
+             present.Add(new Caramel(30,10,20,"lak",CaramelTypes.lollipop,Tastes.mandarin));
+             present.Add(new Chocolate(10, 5, 10, "milka", ChocolateTypes.withoutFilling, ChocolateForms.StickOfChocolate, Tastes.milk));
 
-            present.SortSweets();
-            foreach (var c in present) { Console.WriteLine(c.Weight + " Name :" + c.Name); }
+             present.ShowAllSweets();
 
-            
+             Console.WriteLine();
+             Console.WriteLine();
 
+             present.SortSweets(new Comparison<ISweet>(Comparators.WeightCompare));
+
+             Console.WriteLine();
+             Console.WriteLine();
+             present.ShowAllSweets();
 
             Console.ReadLine();
         }

@@ -24,5 +24,13 @@ namespace Present
            this.Taste = caramelTaste;
        }
        public Caramel() { }
+
+       public override string ToString()
+       {
+            if (Name != null)
+                return "Name : " + Name + "\nCalories : " + Calories + "\nSugar : " + Sugar + "\nWeight : " + Weight + "\nType : " + CaramelType +
+                         "\nTaste : " + Taste;
+            else return "Elements are not initialized";
+       }
     }
 }

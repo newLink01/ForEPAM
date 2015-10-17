@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 using System.Collections;
 namespace Present
 {
-    class PresentCollection<material,Collection> where material:ISweet
-                                                 where Collection:ICollection<material>
-                                                 
-                                                                      
-           //Collection<material> where material: ISweet where Collection : ICollection<material>, ICloneable                           
-    { //сделать наследование от icollection  и Iclonable в 1 интерфейс и записать вместо Collection
-        
-//        public IComparer<material> ComparisonDelegate{get;set;}
+    class PresentCollection<material> : ICollection<material> where material:ISweet                                                                                        
+    { 
         private ICollection<material> sweetColleсtion;
-        private double maxPresentWeight;
 
+        private double maxPresentWeight;
         public double MaxPresentWeight
         {
             get { return maxPresentWeight; }
@@ -28,11 +22,11 @@ namespace Present
             get { return currentPresentWeight; }
             set { currentPresentWeight = value; }
         }
-        
+ 
+      
         public PresentCollection(){}
-        public PresentCollection(Collection col,int maxPresentWeight, IComparer<material> comparer = null)
+        public PresentCollection(ICollection<material> col,int maxPresentWeight)
         {
-           
             this.sweetColleсtion = col;
             this.maxPresentWeight = maxPresentWeight;
           
@@ -70,32 +64,24 @@ namespace Present
         public bool Remove(material obj) {
             return this.sweetColleсtion.Remove(obj);
         }
-
-        private object Clone() {
-            ICollection<material> cloneCollection = this.sweetColleсtion;
-            return cloneCollection;
-        }
-
-        public void SortSweets<mat,T>(Func<material,T> keySelector, IComparer<T> comparer) { //сделать копию первое - по чему сортить , второе - чем сортить
-
-            ICollection<material> copy = this.Clone() as ICollection<material>;
-
-            if (copy != null) {
-              copy = copy.OrderBy(i=>keySelector(i),comparer).ToList();
-            }
-           
-            this.sweetColleсtion = copy;
-               //  this.sweetColleсtion = this.sweetColleсtion.OrderBy(x=>keySelector(x), comparer).ToList();
-             return;
-        }
+#endregion
         
 
+        public void SortSweets(Comparison<material> compDelegate) {
+
+            lock (this.sweetColleсtion)
+            {
+              List<material> copy = this.sweetColleсtion.ToList();
+               copy.Sort(compDelegate);
 
 
-
-
-
-
+               this.sweetColleсtion.Clear();
+               this.CurrentPresentWeight = 0;
+               foreach (var c in copy) {
+                   this.Add(c);
+               }
+            }
+        }
         public void FindSweetsBySugar(double left,double right) { 
 
             for(int i = 0;i<this.sweetColleсtion.Count;i++){
@@ -105,17 +91,22 @@ namespace Present
             }
             }
 
-
-
+        public void ShowAllSweets() {
+ 
+            foreach(material m in this.sweetColleсtion){
+                Console.WriteLine(m.ToString() + "\n");
+                
+            }
+        }
 
         public IEnumerator<material> GetEnumerator() {
             return this.sweetColleсtion.GetEnumerator();
-        }/*
+        }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
-       */
-#endregion
+       
+
         }
 
     }
