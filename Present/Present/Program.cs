@@ -14,11 +14,11 @@ namespace Present
 
     class Program
     {
-        
          static void Main(string[] args)
         {
 
-            PresentCollection<ISweet> present = new PresentCollection<ISweet>(new List<ISweet>(),200);
+            #region
+            PresentCollection<ISweet> present = new PresentCollection<ISweet>(200);
             
              present.Add(new Chocolate(20,30,100,"AlpenGold",ChocolateTypes.filled,ChocolateForms.StickOfChocolate,Tastes.nut));
              present.Add(new Caramel(30,10,20,"lak",CaramelTypes.lollipop,Tastes.mandarin));
@@ -31,9 +31,13 @@ namespace Present
              ComparatorsForISweet.CompDelegate += ComparatorsForISweet.CaloriesCompare;
              present.SortSweets(ComparatorsForISweet.CompDelegate);
 
-             present.FindSweetsBySugar(10,200);
-            // present.ShowAllSweets();
+            // present.FindSweetsBySugar(10,200);
+             present.ShowAllSweets();
+             
 
+            //PresentCollection<ISweet> present = new PresentCollection<ISweet>(null, 100);
+             
+            #endregion
             Console.ReadLine();
         }
     }

@@ -25,7 +25,7 @@ namespace Present
  
       
         public PresentCollection(){}
-        public PresentCollection(ICollection<material> col,int maxPresentWeight)
+        public PresentCollection(int maxPresentWeight,ICollection<material> col = null)
         {
             if (col != null)
                 this.sweetColleсtion = col;
