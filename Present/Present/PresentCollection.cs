@@ -10,11 +10,10 @@ namespace Present
     { 
         private ICollection<material> sweetColleсtion;
 
-        private double maxPresentWeight;
+        private readonly double maxPresentWeight;
         public double MaxPresentWeight
         {
             get { return maxPresentWeight; }
-            set { maxPresentWeight = value; }
         }
         private double currentPresentWeight;
         public double CurrentPresentWeight
@@ -88,11 +87,11 @@ namespace Present
               }
             }
         }
-        public void FindSweetsBySugar(double left,double right) { 
+        public void FindSweetsBySugar(double left,double right) {
 
-            for(int i = 0;i<this.sweetColleсtion.Count;i++){
-                if(this.sweetColleсtion.ElementAt<material>(i).Sugar>=left && this.sweetColleсtion.ElementAt<material>(i).Sugar<=right){
-                    Console.WriteLine(this.sweetColleсtion.ElementAt<material>(i).Name + " Sugar : " + this.sweetColleсtion.ElementAt<material>(i).Sugar);
+            foreach (var c in this.sweetColleсtion) {
+                if (c.Sugar >= left && c.Sugar <= right) {
+                    Console.WriteLine(c.Name + " Sugar : " + c.Sugar);
                 }
             }
             }
@@ -109,8 +108,7 @@ namespace Present
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
-       
-
+      
         }
 
     }
