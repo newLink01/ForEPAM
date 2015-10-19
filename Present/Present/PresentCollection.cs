@@ -67,7 +67,12 @@ namespace Present
             this.sweetColleсtion.CopyTo(arr, arrayIndex);
         }
         public bool Remove(material obj) {
+
+            if(this.sweetColleсtion.Contains(obj))
+            this.CurrentPresentWeight -= obj.Weight;
+
             return this.sweetColleсtion.Remove(obj);
+           
         }
 #endregion
         public void SortSweets(Comparison<material> compDelegate) {
