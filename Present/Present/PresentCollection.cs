@@ -72,8 +72,6 @@ namespace Present
 #endregion
         public void SortSweets(Comparison<material> compDelegate) {
 
-            lock (this.sweetColleсtion)
-            {
               List<material> copy = this.sweetColleсtion.ToList();
               if (compDelegate != null)
               {
@@ -84,7 +82,6 @@ namespace Present
                       this.Add(c);
                   }
               }
-            }
         }
         public void FindSweetsBySugar(double left,double right) {
 
