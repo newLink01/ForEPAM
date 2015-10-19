@@ -23,8 +23,7 @@ namespace Present
         }
  
       
-        public PresentCollection(){}
-        public PresentCollection(int maxPresentWeight,ICollection<material> col = null)
+        public PresentCollection(int maxPresentWeight,ICollection<material> col=null)
         {
             if (col != null)
                 this.sweetColleсtion = col;
@@ -91,17 +90,23 @@ namespace Present
 
             foreach (var c in this.sweetColleсtion) {
                 if (c.Sugar >= left && c.Sugar <= right) {
-                    Console.WriteLine(c.Name + " Sugar : " + c.Sugar);
+                    Console.WriteLine("Sweet name : " + c.Name + "\nSugar : " + c.Sugar);
                 }
             }
             }
-        public void ShowAllSweets() {
- 
-            foreach(material m in this.sweetColleсtion){
-                Console.WriteLine(m.ToString() + "\n");
-                
+
+        public override string ToString()
+        {
+            string str = null;
+
+            foreach (material m in this.sweetColleсtion) {
+                str += m.ToString() + "\n\n";
             }
+            return str;
         }
+
+
+
         public IEnumerator<material> GetEnumerator() {
             return this.sweetColleсtion.GetEnumerator();
         }

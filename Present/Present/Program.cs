@@ -23,19 +23,20 @@ namespace Present
              present.Add(new Chocolate(20,30,100,"AlpenGold",ChocolateTypes.filled,ChocolateForms.StickOfChocolate,Tastes.nut));
              present.Add(new Caramel(30,10,20,"lak",CaramelTypes.lollipop,Tastes.mandarin));
              present.Add(new Chocolate(10, 5, 10, "milka", ChocolateTypes.withoutFilling, ChocolateForms.StickOfChocolate, Tastes.milk));
-             present.ShowAllSweets();
+             Console.WriteLine(present);
 
-             Console.WriteLine("\n\n");
+             Console.WriteLine("\n\nSorted by calories:\n\n");
              
 
-             //ComparatorsForISweet.CompDelegate += ComparatorsForISweet.CaloriesCompare;
-            // present.SortSweets(ComparatorsForISweet.CaloriesCompare);
+             ComparatorsForISweet.CompDelegate += ComparatorsForISweet.CaloriesCompare;
+             present.SortSweets(ComparatorsForISweet.CaloriesCompare);
+             Console.WriteLine(present);
 
-            // present.FindSweetsBySugar(10,200);
-            // present.ShowAllSweets();
-          //  Console.WriteLine(present.CurrentPresentWeight);
+             Console.WriteLine("\n\n");
 
-            //PresentCollection<ISweet> present = new PresentCollection<ISweet>(null, 100);
+             present.FindSweetsBySugar(10, 20);
+
+
              
             #endregion
             Console.ReadLine();
