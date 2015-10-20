@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 using System.Collections;
 namespace Present
 {
+
+    /*1)НАСЛЕДОВАНИЕ                                                                     +
+  2)сортировка(не делать копию)                                                          +
+  3)карент презент в сделать отдельную функцию которая считает карент веит               +
+  4)имплементо компараторов для null (исключение) выбросить исключение в компараторах    +
+  5)области видимости в классах явно                                                     +
+ *6)енамы вынести куданить (в каждой сущности свой файл) но тут для всех один файл       +
+ *
+ */
+
    public class PresentCollection<M> : ICollection<M> where M:SweetClass                                                                                       
     { 
         private ICollection<M> sweetColleсtion;
@@ -49,8 +59,7 @@ namespace Present
             get{return false;}
         }
         public void Add(M obj) {
-
-          
+            
             if (obj != null)
             {
                 if ((this.currentPresentWeight + obj.Weight) <= this.maxPresentWeight)
@@ -61,9 +70,7 @@ namespace Present
 
                 else { Console.WriteLine("You can't add more. Exceeding the maximum weight..."); return; }
             }
-
-            else this.sweetColleсtion.Add(obj);
-        }
+        } // cannot add null
 
 
 
@@ -87,26 +94,8 @@ namespace Present
            
         }
 #endregion
-    
-        public void SortSweets(Comparison<M> compDelegate)
-        {
-
-            if (compDelegate != null)
-            {
-              // this.sweetColleсtion.
-
-               /* this.Clear();
-                foreach (var c in)
-                {
-                    this.Add(c);
-                }*/
-            }
-        }
-
-        public void SortSweets(Func<M, double> keySelector) { 
-            
-
-
+        public IOrderedEnumerable<M> GetSortedSweets<T>(Func<M, T> keySelector) {
+            return this.sweetColleсtion.OrderBy(keySelector);
         }
 
 
@@ -119,10 +108,6 @@ namespace Present
                 }
             }
             }
-
-
-
-
 
 
         public override string ToString()
@@ -146,11 +131,3 @@ namespace Present
 
     }
 
-/*1)НАСЛЕДОВАНИЕ                                                                         +
-  2)сортировка(не делать копию)
-  3)карент презент в сделать отдельную функцию которая считает карент веит               +
-  4)имплементо компараторов для null (исключение) выбросить исключение в компараторах    +
-  5)области видимости в классах явно                                                     +
- *6)енамы вынести куданить (в каждой сущности свой файл) но тут для всех один файл       +
- *
- */

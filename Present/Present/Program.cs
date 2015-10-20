@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-
 namespace Present
 {
    
@@ -18,36 +17,22 @@ namespace Present
             #region
             PresentCollection<SweetClass> present = new PresentCollection<SweetClass>(300);
             
-           /*  present.Add(new Chocolate(20,30,100,"AlpenGold",ChocolateTypes.filled,ChocolateForms.StickOfChocolate,Tastes.nut));
+             present.Add(new Chocolate(20,30,100,"AlpenGold",ChocolateTypes.filled,ChocolateForms.StickOfChocolate,Tastes.nut));
              present.Add(new Caramel(30,10,20,"lak",CaramelTypes.lollipop,Tastes.mandarin));
              present.Add(new Chocolate(10, 5, 10, "milka", ChocolateTypes.withoutFilling, ChocolateForms.StickOfChocolate, Tastes.milk));
              present.Add(null);
              Console.WriteLine(present);
              Console.WriteLine("\n\nSorted by calories:\n\n");
 
-             ComparatorsForISweet.CompDelegate += ComparatorsForISweet.WeightCompare;
-             present.SortSweets(ComparatorsForISweet.CaloriesCompare);
-            
+             foreach (var c in present.GetSortedSweets(x => x.Calories)) {
+                 Console.WriteLine(c + "\n");
+             }
 
-             Console.WriteLine(present);*/
+             Console.WriteLine();
+             Console.WriteLine();
 
+             present.FindSweetsBySugar(1, 10);
 
-            List<int> a = new List<int>() { 5, 4, 3, 2, 1 };
-            a.Sort();
-            //foreach (var c in a) { Console.WriteLine(c); }
-
-             /*Console.WriteLine("\n\n");
-
-             List<string> obj = new List<string>();
-             obj.Add(null);
-             obj.Add(null);
-
-             Console.WriteLine(obj.Count);*/
-
-            /* present.FindSweetsBySugar(10, 20);
-
-             */
-             
             #endregion
             Console.ReadLine();
         }
