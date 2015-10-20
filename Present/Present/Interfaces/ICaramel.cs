@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Present
 {
     
-    interface ICaramel : ISweet
+    interface ICaramel
     {
         CaramelTypes CaramelType { set; get; }
     }

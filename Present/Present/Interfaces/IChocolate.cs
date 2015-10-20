@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Present
 {
-    interface IChocolate : ISweet
+    interface IChocolate 
     {
         ChocolateTypes ChocolateType { set; get; }
         ChocolateForms ChocolateForm { set; get; } 

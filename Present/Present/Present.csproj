@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="SweetClass.cs" />
     <Compile Include="Sweets\Caramel.cs" />
     <Compile Include="Sweets\Chocolate.cs" />
     <Compile Include="ComparatorsForISweet.cs" />
     <Compile Include="Interfaces\ICaramel.cs" />
     <Compile Include="Interfaces\IChocolate.cs" />
-    <Compile Include="Interfaces\ISweet.cs" />
     <Compile Include="PresentCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

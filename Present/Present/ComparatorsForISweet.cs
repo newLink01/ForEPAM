@@ -6,23 +6,40 @@ using System.Threading.Tasks;
 
 namespace Present
 {
-   static class ComparatorsForISweet
+  public static class ComparatorsForISweet
     {
-        private static Comparison<ISweet> compDelegate;
-        internal static Comparison<ISweet> CompDelegate
+        private static Comparison<SweetClass> compDelegate;
+        internal static Comparison<SweetClass> CompDelegate
         {
             get { return ComparatorsForISweet.compDelegate; }
             set { ComparatorsForISweet.compDelegate = value; }
         }
-        public static int WeightCompare(ISweet obj1,ISweet obj2){
-            if(obj1.Weight>obj2.Weight){return 1;}
-            if(obj1.Weight<obj2.Weight){return -1;}
-            else return 0;
+        public static int WeightCompare(SweetClass obj1,SweetClass obj2){
+
+           // if (obj1 == null || obj2 == null) throw new ArgumentNullException();
+            try
+            {
+                if (obj1.Weight > obj2.Weight) { return 1; }
+                if (obj1.Weight < obj2.Weight) { return -1; }
+                else return 0;
+            }
+            catch (NullReferenceException) {
+                return 0;
+            }
+            
         }
-        public static int CaloriesCompare(ISweet obj1, ISweet obj2) {
-            if (obj1.Calories > obj2.Calories) { return 1; }
-            if (obj1.Calories < obj2.Calories) { return -1; }
-            else return 0;
+        public static int CaloriesCompare(SweetClass obj1, SweetClass obj2) {
+
+            try
+            {
+                if (obj1.Calories > obj2.Calories) { return 1; }
+                if (obj1.Calories < obj2.Calories) { return -1; }
+                else return 0;
+            }
+            catch (NullReferenceException) {
+                return 0;
+            }
+           // return obj1.Calories.CompareTo(obj2.Calories);
         }      
     }
 }
