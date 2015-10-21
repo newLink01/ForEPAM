@@ -16,7 +16,6 @@ namespace Present
         }
         public static int WeightCompare(SweetClass obj1,SweetClass obj2){
 
-           // if (obj1 == null || obj2 == null) throw new ArgumentNullException();
             try
             {
                 if (obj1.Weight > obj2.Weight) { return 1; }
@@ -39,7 +38,6 @@ namespace Present
             catch (NullReferenceException) {
                 return 0;
             }
-           // return obj1.Calories.CompareTo(obj2.Calories);
         }  
     }
 

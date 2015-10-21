@@ -59,7 +59,7 @@ namespace Present
             get{return false;}
         }
         public void Add(M obj) {
-            
+
             if (obj != null)
             {
                 if ((this.currentPresentWeight + obj.Weight) <= this.maxPresentWeight)
@@ -70,9 +70,8 @@ namespace Present
 
                 else { Console.WriteLine("You can't add more. Exceeding the maximum weight..."); return; }
             }
-        } // cannot add null
-
-
+            else this.sweetColleсtion.Add(obj);
+        } 
 
 
         public void Clear() {
@@ -94,22 +93,21 @@ namespace Present
            
         }
 #endregion
-        public IOrderedEnumerable<M> GetSortedSweets<T>(Func<M, T> keySelector) {
-            return this.sweetColleсtion.OrderBy(keySelector);
+
+        public List<M> GetSortedSweets(Comparison<M> compDelegate) {
+            List<M> obj = this.sweetColleсtion.ToList();
+            obj.Sort(compDelegate);
+            return obj;
         }
-
-
-
         public void FindSweetsBySugar(double left,double right) {
 
             foreach (var c in this.sweetColleсtion) {
+                if(c !=null)
                 if (c.Sugar >= left && c.Sugar <= right) {
                     Console.WriteLine("Sweet name : " + c.Name + "\nSugar : " + c.Sugar);
                 }
             }
             }
-
-
         public override string ToString()
         {
             string str = null;
