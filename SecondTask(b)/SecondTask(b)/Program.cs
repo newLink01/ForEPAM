@@ -18,8 +18,7 @@ namespace SecondTask_b_
             Tasks t = new Tasks(path);
             t.ShowConcordance();
 
-           
-    
+            
            
                 Console.ReadKey();
         }

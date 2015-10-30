@@ -10,7 +10,7 @@ namespace SecondTask_b_.Classes
     {
       private string[] sentenceSeparators = new string[] { "?", "!", ".", "...", "?!", ";", ":" };
       private  string[] wordSeparators = new string[] { " ", " - " };
-      private string[] allSeparators = new string[] { "?", "!", ".", "...", "?!", " ", " - ",";",":" };
+      private string[] allSeparators = new string[] { "?", "!", ".", "...", "?!", " ", " - ",";",":","," };
 
       public string[] AllSeparators
       {

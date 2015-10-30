@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SecondTask_b_.Interfaces;
-
+using System.IO;
 namespace SecondTask_b_.Classes
 {
    public class Tasks
@@ -60,6 +60,7 @@ namespace SecondTask_b_.Classes
            #endregion
 
 
+           
 
            foreach (var c in markedWords.OrderBy(x=>x.WordValue)) {
                
@@ -69,9 +70,14 @@ namespace SecondTask_b_.Classes
                    indexes += (k + ";");  
                }
 
-               Console.WriteLine(c.WordValue + "\t\t" + c.Count + ":" + indexes);
+              Console.WriteLine((c.WordValue + "\t\t" + c.Count + ":" + indexes));
                indexes = null; 
            }
+
+
+           
+
+
        }
 
 
