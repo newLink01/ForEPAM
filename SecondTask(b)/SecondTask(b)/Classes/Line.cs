@@ -7,7 +7,7 @@ using SecondTask_b_.Interfaces;
 
 namespace SecondTask_b_.Classes
 {
-   public class Line : ILine,IEnumerable<IWord>
+   public class Line : ILine
     {
         public int LineIndex { set; get; }
         public List<IWord> items { set; get; }
@@ -21,6 +21,10 @@ namespace SecondTask_b_.Classes
             this.LineIndex = LineIndex;
         }
 
+       public IWord this[int index]{
+           get { return items[index]; }
+
+       }
       
         
 

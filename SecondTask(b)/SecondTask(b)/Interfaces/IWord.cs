@@ -11,8 +11,9 @@ namespace SecondTask_b_.Interfaces
         string WordValue { set; get; }
         int Count { set; get; }
         List<int> LineIndexes { set; get; }
-        bool IsRepeats { set; get; }
 
+    //    bool IsRepeats { set; get; }
+        string ToLower();
 
     }
 }

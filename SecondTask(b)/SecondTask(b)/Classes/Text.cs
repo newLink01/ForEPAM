@@ -15,7 +15,10 @@ namespace SecondTask_b_.Classes
            text = new List<ILine>();
        }
 
-
+       public ILine this[int index]{
+           get { return text[index]; }
+           set { text[index] = value; }
+       }
 
 
 

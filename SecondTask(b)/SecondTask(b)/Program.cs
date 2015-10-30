@@ -13,20 +13,28 @@ namespace SecondTask_b_
     {
         static void Main(string[] args)
         {
-            StreamReader reader = new StreamReader("Input.txt");
-            Separators sep = new Separators();
+            string path = "Input.txt";
+ 
+            //Tasks obj = new Tasks("Input.txt");
 
-            Parser p = new Parser("input.txt");
+            Tasks t = new Tasks(path);
 
-            /*p.Parse();
+            t.ShowConcordance();
 
-            foreach (var c in p.textObject) {
-                Console.WriteLine(c.LineIndex);
-            }  
-            */
 
-            p.Parse();
-            Console.WriteLine(p.textObject.text.Count);
+           /* List<KeyValuePair<int, string>> a = new List<KeyValuePair<int, string>>();
+
+            a.Add(new KeyValuePair<int, string>(1, "str"));
+            a.Add(new KeyValuePair<int, string>(1, "str"));
+            a.Add(new KeyValuePair<int, string>(1, "str"));
+            a.Add(new KeyValuePair<int, string>(1, "str"));
+            a.Add(new KeyValuePair<int, string>(1, "str"));
+            a.Add(new KeyValuePair<int, string>(1, "str"));
+
+            foreach (var c in a) { Console.WriteLine(c.Key); }*/
+
+
+           
                 Console.ReadKey();
         }
     }
