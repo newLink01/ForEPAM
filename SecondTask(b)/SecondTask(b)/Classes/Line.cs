@@ -9,17 +9,13 @@ namespace SecondTask_b_.Classes
 {
    public class Line : ILine
     {
-        public int LineIndex { set; get; }
         public List<IWord> items { set; get; }
 
         public Line() {
             items = new List<IWord>();
         }
 
-        public Line(int LineIndex) {
-            items = new List<IWord>();
-            this.LineIndex = LineIndex;
-        }
+    
 
        public IWord this[int index]{
            get { return items[index]; }

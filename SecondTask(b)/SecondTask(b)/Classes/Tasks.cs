@@ -18,12 +18,12 @@ namespace SecondTask_b_.Classes
        }
 
        public void ShowConcordance() {
-
+           string indexes = null;
            List<string> markedValueWords = new List<string>();
            List<IWord> markedWords = new List<IWord>();
            IWord toAdd = new Word();
 
-
+           #region
            for (int i = 0; i < processedText.text.Count; i++)
            {
                for (int j = 0; j < processedText[i].items.Count; j++)
@@ -39,30 +39,38 @@ namespace SecondTask_b_.Classes
 
                        for (int nest_i = 0; nest_i < processedText.text.Count; nest_i++)
                        {
-                           for (int nest_j = 0; nest_j < processedText[i].items.Count; nest_j++)
+                           for (int nest_j = 0; nest_j < processedText[nest_i].items.Count; nest_j++)
                            {
 
                                if (processedText[nest_i].items[nest_j].WordValue == currentWord) {
                                    if (!toAdd.LineIndexes.Contains(nest_i)) {
                                        toAdd.LineIndexes.Add(nest_i);
                                    }
-
-
+                                   toAdd.Count++;
                                }
-
-
                            }
-                           //markedWords.Add(processedText[i].items[j]);
-
-
                        }
-
-
-
-
+                       markedWords.Add(toAdd);
+                       toAdd = new Word();
                    }
+
+               }
+               
+           }
+           #endregion
+
+
+
+           foreach (var c in markedWords.OrderBy(x=>x.WordValue)) {
+               
+               
+               foreach (var k in c.LineIndexes)
+               {
+                   indexes += (k + ";");  
                }
 
+               Console.WriteLine(c.WordValue + "\t\t" + c.Count + ":" + indexes);
+               indexes = null; 
            }
        }
 

@@ -20,15 +20,20 @@ namespace SecondTask_b_.Classes
        
       // public bool IsRepeats { set; get; }
 
-       public Word() { }
+       public Word() {
+           Count = 0;
+           LineIndexes = new List<int>();
+       }
 
        public Word(string word) {
+           Count = 0;
            this.WordValue = word;
+           LineIndexes = new List<int>();
         }
 
        public Word(string word, int stringIndex) {
            LineIndexes = new List<int>();
-
+           Count = 0;
            this.WordValue = word;
         }
 

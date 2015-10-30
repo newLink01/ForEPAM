@@ -8,9 +8,9 @@ namespace SecondTask_b_.Classes
 {
    public class Separators
     {
-      private string[] sentenceSeparators = new string[] { "?", "!", ".", "...", "?!"};
+      private string[] sentenceSeparators = new string[] { "?", "!", ".", "...", "?!", ";", ":" };
       private  string[] wordSeparators = new string[] { " ", " - " };
-      private string[] allSeparators = new string[] { "?", "!", ".", "...", "?!", " ", " - " };
+      private string[] allSeparators = new string[] { "?", "!", ".", "...", "?!", " ", " - ",";",":" };
 
       public string[] AllSeparators
       {

@@ -14,26 +14,12 @@ namespace SecondTask_b_
         static void Main(string[] args)
         {
             string path = "Input.txt";
- 
-            //Tasks obj = new Tasks("Input.txt");
 
             Tasks t = new Tasks(path);
-
             t.ShowConcordance();
 
-
-           /* List<KeyValuePair<int, string>> a = new List<KeyValuePair<int, string>>();
-
-            a.Add(new KeyValuePair<int, string>(1, "str"));
-            a.Add(new KeyValuePair<int, string>(1, "str"));
-            a.Add(new KeyValuePair<int, string>(1, "str"));
-            a.Add(new KeyValuePair<int, string>(1, "str"));
-            a.Add(new KeyValuePair<int, string>(1, "str"));
-            a.Add(new KeyValuePair<int, string>(1, "str"));
-
-            foreach (var c in a) { Console.WriteLine(c.Key); }*/
-
-
+           
+    
            
                 Console.ReadKey();
         }
