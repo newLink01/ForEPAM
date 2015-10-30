@@ -20,6 +20,7 @@ namespace SecondTask_b_.Classes
        
       // public bool IsRepeats { set; get; }
 
+       public Word() { }
 
        public Word(string word) {
            this.WordValue = word;

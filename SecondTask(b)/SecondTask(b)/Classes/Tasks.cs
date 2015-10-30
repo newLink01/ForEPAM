@@ -21,25 +21,49 @@ namespace SecondTask_b_.Classes
 
            List<string> markedValueWords = new List<string>();
            List<IWord> markedWords = new List<IWord>();
+           IWord toAdd = new Word();
 
 
-           for (int i = 0; i < processedText.text.Count; i++) {
-               for (int j = 0; j < processedText[i].items.Count; j++) {
+           for (int i = 0; i < processedText.text.Count; i++)
+           {
+               for (int j = 0; j < processedText[i].items.Count; j++)
+               {
 
-                   if (!markedValueWords.Contains(processedText[i].items[j].WordValue)) {
-                       markedValueWords.Add(processedText[i].items[j].WordValue);
-                       markedWords.Add(processedText[i].items[j]);
+
+
+                   if (!markedValueWords.Contains(processedText[i].items[j].WordValue))
+                   {
+                       string currentWord = processedText[i].items[j].WordValue;
+                       markedValueWords.Add(currentWord);
+                       toAdd.WordValue = currentWord;
+
+                       for (int nest_i = 0; nest_i < processedText.text.Count; nest_i++)
+                       {
+                           for (int nest_j = 0; nest_j < processedText[i].items.Count; nest_j++)
+                           {
+
+                               if (processedText[nest_i].items[nest_j].WordValue == currentWord) {
+                                   if (!toAdd.LineIndexes.Contains(nest_i)) {
+                                       toAdd.LineIndexes.Add(nest_i);
+                                   }
+
+
+                               }
+
+
+                           }
+                           //markedWords.Add(processedText[i].items[j]);
+
+
+                       }
+
+
 
 
                    }
-                      
-                       
-                            
-
                }
+
            }
-
-
        }
 
 
