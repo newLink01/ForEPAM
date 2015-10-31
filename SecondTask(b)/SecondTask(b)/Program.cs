@@ -16,9 +16,11 @@ namespace SecondTask_b_
             string path = "Input.txt";
 
             Tasks t = new Tasks(path);
-            t.ShowConcordance();
+            //t.ShowConcordance();
+           // t.ShowSecond(4);
 
             
+
            
                 Console.ReadKey();
         }

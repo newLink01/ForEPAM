@@ -48,17 +48,17 @@ namespace SecondTask_b_.Classes
            while (true)
            {
                str = reader.ReadLine();
-               if (String.IsNullOrWhiteSpace(str)) { break; }
+               if (str == null/*String.IsNullOrWhiteSpace(str)*/) { break; }
                else
                {
                    textObject.text.Add(LineParse(str));
                }
            }
 
-
            return textObject;
        }
 
+      
 
 
 

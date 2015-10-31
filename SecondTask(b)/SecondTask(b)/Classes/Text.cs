@@ -13,6 +13,7 @@ namespace SecondTask_b_.Classes
 
        public Text() {
            text = new List<ILine>();
+
        }
 
        public ILine this[int index]{
