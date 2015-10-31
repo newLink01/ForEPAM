@@ -53,8 +53,8 @@ namespace SecondTask_b_.Classes
 
            foreach (var c in markedWords.OrderBy(x => x.WordValue))
            {
-               //Console.WriteLine((c.WordValue + "\t\t" + c.Count + ":" + c.ToString()));
-               Console.WriteLine(c.WordValue+new string(' ',20-c.WordValue.Length)+c.Count+":"+c.ToString());
+               Console.WriteLine(c.WordValue+new string('.',20-c.WordValue.Length)+c.Count+":"+c.ToString());
+               
            }
        }
 
