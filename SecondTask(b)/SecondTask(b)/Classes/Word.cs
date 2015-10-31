@@ -42,7 +42,16 @@ namespace SecondTask_b_.Classes
            return this.WordValue.ToLower();
        }
 
-
+       public override string ToString()
+       {
+           string str = null;
+           int k = 0;
+           foreach (var c in this.LineIndexes) {
+               k = c;
+               str += (k++) + ";";
+           }
+           return str;
+       }
 
     }
 }

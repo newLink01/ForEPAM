@@ -16,7 +16,7 @@ namespace SecondTask_b_.Classes
        public Tasks(string path) {
            this.processedText = new Parser(path).TextParse();
        }
-
+/*
        public void ShowConcordance() {
            string indexes = null;
            List<string> markedValueWords = new List<string>();
@@ -73,16 +73,58 @@ namespace SecondTask_b_.Classes
               Console.WriteLine((c.WordValue + "\t\t" + c.Count + ":" + indexes));
                indexes = null; 
            }
-
-
-           
-
-
        }
+       */
 
 
+       public void ShowConcordance()
+       {
+           string indexes = null;
+           List<string> markedValueWords = new List<string>();
+           List<IWord> markedWords = new List<IWord>();
+           IWord toAdd = new Word();
+
+           #region
+           for (int i = 0; i < processedText.text.Count; i++)
+           {
+               for (int j = 0; j < processedText[i].items.Count; j++)
+               {
 
 
+                   if (!markedValueWords.Contains(processedText[i].items[j].WordValue))
+                   {
+                       /*string currentWord = processedText[i].items[j].WordValue;
+                       markedValueWords.Add(currentWord);*/
+                       toAdd.WordValue = processedText[i].items[j].WordValue;
+                       markedValueWords.Add(toAdd.WordValue);
+                       markedWords.Add(toAdd);
+                       toAdd = new Word();
+                   }
+
+                   foreach (var m in markedWords) {
+
+                       if (m.WordValue == processedText[i].items[j].WordValue) {
+                           m.Count++;
+                           if (!m.LineIndexes.Contains(i)) { m.LineIndexes.Add(i); }
+                       }
+                   }
+               }
+           }
+
+           #endregion
+
+           foreach (var c in markedWords.OrderBy(x => x.WordValue))
+           {
+
+             /*  foreach (var k in c.LineIndexes)
+               {
+                   indexes += (k + ";");
+               }*/
+
+               Console.WriteLine((c.WordValue + "\t\t" + c.Count + ":" + c.ToString()));
+               indexes = null;
+           }
+       }
 
     }
 }
