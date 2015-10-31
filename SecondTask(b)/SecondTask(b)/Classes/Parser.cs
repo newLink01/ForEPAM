@@ -23,7 +23,6 @@ namespace SecondTask_b_.Classes
            catch (FileNotFoundException ex) {
                Console.Write(ex.Message);
            }
-           textObject = new Text();
        }
 
 
@@ -54,7 +53,7 @@ namespace SecondTask_b_.Classes
                    textObject.text.Add(LineParse(str));
                }
            }
-
+           reader.Close();
            return textObject;
        }
 

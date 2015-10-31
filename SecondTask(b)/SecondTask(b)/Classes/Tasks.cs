@@ -60,12 +60,12 @@ namespace SecondTask_b_.Classes
            List<string> markedValueWords = new List<string>();
            List<IWord> markedWords = new List<IWord>();
            IWord toAdd = new Word();
-           int currentPage = 0;
+           int currentPage = -1;
            char currentFirstLetter = ' ';
            //////////////////////////////////////
            for (int i = 0; i < processedText.text.Count; i++)
            {
-               if ((i + 1) % linesInPage == 0) { currentPage++; }
+               if ((i) % (linesInPage) == 0) { currentPage++; }
                for (int j = 0; j < processedText[i].items.Count; j++)
                {
 
@@ -129,14 +129,5 @@ namespace SecondTask_b_.Classes
 
             
        }
-
-
-
-
-
-
-
-
-
     }
 }
