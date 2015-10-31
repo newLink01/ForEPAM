@@ -48,7 +48,7 @@ namespace SecondTask_b_.Classes
            while (true)
            {
                str = reader.ReadLine();
-               if (str == null/*String.IsNullOrWhiteSpace(str)*/) { break; }
+               if (str == null) { break; }
                else
                {
                    textObject.text.Add(LineParse(str));

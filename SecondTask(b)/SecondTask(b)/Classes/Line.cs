@@ -14,18 +14,10 @@ namespace SecondTask_b_.Classes
         public Line() {
             items = new List<IWord>();
         }
-
-    
-
        public IWord this[int index]{
            get { return items[index]; }
 
        }
-      
-        
-
-
-
         public IEnumerator<IWord> GetEnumerator()
         {
             return items.GetEnumerator();

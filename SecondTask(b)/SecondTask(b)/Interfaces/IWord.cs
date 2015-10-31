@@ -14,7 +14,6 @@ namespace SecondTask_b_.Interfaces
         List<int> PageNumbers { set; get; }
 
 
-    //    bool IsRepeats { set; get; }
         string ToLower();
         string GetLineIndexesAsString();
         string GetPageNumbersAsString();

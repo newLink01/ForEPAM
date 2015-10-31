@@ -51,7 +51,7 @@ namespace SecondTask_b_.Classes
            int k = 0;
            foreach (var c in this.LineIndexes) {
                k = c;
-               str += (++k) + ";";
+               str += (++k) + " ;";
            }
            return str;
        }
@@ -63,7 +63,7 @@ namespace SecondTask_b_.Classes
            int k = 0;
            foreach (var c in this.PageNumbers) {
                k = c;
-               str += (++k) + ";";
+               str += (++k) + " ;";
            }
            return str;
        }

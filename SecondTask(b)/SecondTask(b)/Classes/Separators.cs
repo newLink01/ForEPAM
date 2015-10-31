@@ -17,13 +17,5 @@ namespace SecondTask_b_.Classes
           get { return allSeparators; }
           set { allSeparators = value; }
       }
-
-       
-
-
-      
-
-      
-
     }
 }

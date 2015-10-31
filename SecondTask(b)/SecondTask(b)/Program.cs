@@ -14,11 +14,10 @@ namespace SecondTask_b_
         static void Main(string[] args)
         {
             string path = "Input.txt";
-
             Tasks t = new Tasks(path);
-            //t.ShowConcordance();
-           // t.ShowSecond(4);
-
+            t.ShowFirstConcordance();
+           //t.ShowSecondConcordance(4);
+           // t.Test(2);
             
 
            
