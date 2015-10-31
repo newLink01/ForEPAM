@@ -16,7 +16,7 @@ namespace SecondTask_b_
             string path = "Input.txt";
             Tasks t = new Tasks(path);
             t.ShowFirstConcordance();
-           t.ShowSecondConcordance(4);
+           //t.ShowSecondConcordance(2);
 
             
            
