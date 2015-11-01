@@ -12,17 +12,12 @@ namespace SecondTask_b_.Classes
        private StreamReader reader;
        private Text textObject;
        private Separators sep;
+       private string path;
 
        public Parser(string path) {
            textObject = new Text();
            sep = new Separators();
-           try
-           {
-               reader = new StreamReader(path);
-           }
-           catch (FileNotFoundException ex) {
-               Console.Write(ex.Message);
-           }
+           this.path = path;
        }
 
 
@@ -33,7 +28,7 @@ namespace SecondTask_b_.Classes
 
                for (int i = 0; i < containsWords.Length; i++)
                {
-                   newLine.items.Add(new Word(containsWords[i].ToLower()));
+                   newLine.Add(new Word(containsWords[i].ToLower()));
                }
                return newLine;
            
@@ -42,18 +37,20 @@ namespace SecondTask_b_.Classes
      
        public Text TextParse() {
 
-           string str = null;
-
-           while (true)
+           using (reader = new StreamReader(this.path))
            {
-               str = reader.ReadLine();
-               if (str == null) { break; }
-               else
+               string str = null;
+
+               while (true)
                {
-                   textObject.text.Add(LineParse(str));
+                   str = reader.ReadLine();
+                   if (str == null) { break; }
+                   else
+                   {
+                       textObject.Add(LineParse(str));
+                   }
                }
            }
-           reader.Close();
            return textObject;
        }
 

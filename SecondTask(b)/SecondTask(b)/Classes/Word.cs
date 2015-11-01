@@ -55,8 +55,6 @@ namespace SecondTask_b_.Classes
            }
            return str;
        }
-
-
        public string GetPageNumbersAsString() {
 
            string str = null;
