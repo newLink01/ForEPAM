@@ -15,6 +15,22 @@ namespace SecondTask_b_.Classes
        private string path;
 
        public Parser(string path) {
+
+           try
+           {
+               reader = new StreamReader(path);
+           }
+           catch (FileLoadException ex)
+           {
+               Console.Write(ex.Message);
+               reader = null;
+           }
+           catch (FileNotFoundException ex) {
+               Console.Write(ex.Message);
+               reader = null;   
+           }
+           
+
            textObject = new Text();
            sep = new Separators();
            this.path = path;
@@ -36,18 +52,20 @@ namespace SecondTask_b_.Classes
 
      
        public Text TextParse() {
-
-           using (reader = new StreamReader(this.path))
+           if (reader != null)
            {
-               string str = null;
-
-               while (true)
+               using (reader)
                {
-                   str = reader.ReadLine();
-                   if (str == null) { break; }
-                   else
+                   string str = null;
+
+                   while (true)
                    {
-                       textObject.Add(LineParse(str));
+                       str = reader.ReadLine();
+                       if (str == null) { break; }
+                       else
+                       {
+                           textObject.Add(LineParse(str));
+                       }
                    }
                }
            }
