@@ -7,13 +7,12 @@ using SecondTask_b_.Interfaces;
 
 namespace SecondTask_b_.Classes
 {
-   public class Text : ICollection<ILine>
+   public class Text :ICollection<ILine>
     {
-       public List<ILine> text{set;get;}
+       private List<ILine> text{set;get;}
 
        public Text() {
            text = new List<ILine>();
-
        }
 
        public ILine this[int index]{

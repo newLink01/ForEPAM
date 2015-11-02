@@ -22,7 +22,7 @@ namespace SecondTask_b_.Classes
            IWord toAdd = new Word();
 
            #region
-           for (int i = 0; i < processedText.text.Count; i++)
+           for (int i = 0; i < processedText.Count; i++)
            {
                for (int j = 0; j < processedText[i].items.Count; j++)
                {
@@ -63,7 +63,7 @@ namespace SecondTask_b_.Classes
            int currentPage = -1;
            char currentFirstLetter = ' ';
            //////////////////////////////////////
-           for (int i = 0; i < processedText.text.Count; i++)
+           for (int i = 0; i < processedText.Count; i++)
            {
                if ((i) % (linesInPage) == 0) { currentPage++; }
                for (int j = 0; j < processedText[i].items.Count; j++)

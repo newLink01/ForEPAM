@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SecondTask_b_.Classes;
 namespace SecondTask_b_.Interfaces
 {
-  public interface ILine:IEnumerable<IWord>
+  public interface ILine
     {
       List<IWord> items { set; get; }
     }

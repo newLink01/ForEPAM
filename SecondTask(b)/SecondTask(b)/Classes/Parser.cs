@@ -11,7 +11,8 @@ namespace SecondTask_b_.Classes
     {
        private StreamReader reader;
        private Text textObject;
-       private Separators sep;
+       private string[] sep;
+       
        private string path;
 
        public Parser(string path) {
@@ -20,31 +21,27 @@ namespace SecondTask_b_.Classes
            {
                reader = new StreamReader(path);
            }
-           catch (FileLoadException ex)
+           catch (Exception ex)
            {
                Console.Write(ex.Message);
                reader = null;
            }
-           catch (FileNotFoundException ex) {
-               Console.Write(ex.Message);
-               reader = null;   
-           }
            
-
+           
            textObject = new Text();
-           sep = new Separators();
+           sep = new Separators().GetAllSeparators().ToArray();
            this.path = path;
        }
 
 
-       private Line LineParse(string str) {
-           Line newLine = new Line();
+       private ILine LineParse(string str) {
+           ILine newLine = new Line();
 
-               string[] containsWords = str.Split(sep.AllSeparators, StringSplitOptions.RemoveEmptyEntries);
+               string[] containsWords = str.Split(sep, StringSplitOptions.RemoveEmptyEntries);
 
                for (int i = 0; i < containsWords.Length; i++)
                {
-                   newLine.Add(new Word(containsWords[i].ToLower()));
+                   newLine.items.Add(new Word(containsWords[i].ToLower()));
                }
                return newLine;
            
