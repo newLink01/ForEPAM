@@ -7,4 +7,4 @@ list and return type. When you instantiate a delegate, you can associate its ins
 Delegates are used to pass methods as arguments to other methods. Event handlers are nothing more
  than methods that are invoked through delegates. You create a custom method, and a 
  class such as a windows control can call your method when a certain event occurs.
-  The following example shows a delegate declaration.
+  The following example shows a delegate declaration.zoro-zoro
