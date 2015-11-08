@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATSProject
 {
-    class Program
+    public class Port
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Its begin");
-        }
     }
 }

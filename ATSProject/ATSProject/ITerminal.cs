@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ATSProject
 {
-    class Program
+   public interface ITerminal
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Its begin");
-        }
+
+
+
     }
 }

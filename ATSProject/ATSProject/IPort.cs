@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ATSProject
 {
-    class Program
+   public interface IPort
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Its begin");
-        }
+       PortState State { private set; get; }
+
+
     }
 }
