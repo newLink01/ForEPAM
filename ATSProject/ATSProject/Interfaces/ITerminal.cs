@@ -9,6 +9,7 @@ namespace ATSProject.Interfaces
   public interface ITerminal
     {
       PhoneNumber Number{get;}
+      string UserName { get; }
 
       void Call(PhoneNumber target);
      // void IncomingRequestFrom(PhoneNumber source);

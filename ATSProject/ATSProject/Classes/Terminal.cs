@@ -11,17 +11,18 @@ namespace ATSProject.Classes
     {
 
 
-       public event EventHandler BeginCall;
+       public event EventHandler<PhoneNumber> BeginCall;
        public event EventHandler EndCall;
        public event EventHandler Plugging;
        public event EventHandler UnPlugging;
 
+       private readonly string UserName { set; get; }
        private PhoneNumber Number { get; set; }
-       public Terminal(PhoneNumber number) {
+
+       public Terminal(PhoneNumber number,string name) {
            this.Number = number;
+           this.UserName = name;
        }
-
-
 
        PhoneNumber ITerminal.Number
        {
@@ -30,7 +31,7 @@ namespace ATSProject.Classes
 
        public void Call(PhoneNumber target)
        {
-           this.OnBeginCall();
+           this.OnBeginCall(target);
        }
        public void Drop()
        {
@@ -51,11 +52,7 @@ namespace ATSProject.Classes
 
 
 
-       protected virtual void OnBeginCall() {
-           if (this.BeginCall != null) {
-               BeginCall(this, null);
-           }
-       }
+       protected virtual void OnBeginCall(PhoneNumber e);
        protected virtual void OnEndCall() {
            if (this.EndCall != null) {
                this.EndCall(this,null);
