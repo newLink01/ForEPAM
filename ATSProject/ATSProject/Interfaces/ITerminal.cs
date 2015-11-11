@@ -8,7 +8,7 @@ namespace ATSProject.Interfaces
 {
   public interface ITerminal
     {
-      //PhoneNumber Phone;
+      PhoneNumber Number{get;}
 
       void Call(PhoneNumber target);
      // void IncomingRequestFrom(PhoneNumber source);
