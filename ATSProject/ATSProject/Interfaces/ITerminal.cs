@@ -17,7 +17,9 @@ namespace ATSProject.Interfaces
       void Plug();
       void Unplug();
 
-
-
+       event EventHandler BeginCall;
+       event EventHandler EndCall;
+       event EventHandler Plugging;
+       event EventHandler UnPlugging;
     }
 }

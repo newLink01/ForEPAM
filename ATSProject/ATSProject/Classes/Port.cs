@@ -14,7 +14,6 @@ namespace ATSProject.Classes
            get;
            set;
        }
-
        public Port() { State = PortState.UnPlagged; }
 
 

@@ -13,6 +13,8 @@ namespace ATSProject.Classes
 
        public event EventHandler BeginCall;
        public event EventHandler EndCall;
+       public event EventHandler Plugging;
+       public event EventHandler UnPlugging;
 
        private PhoneNumber Number { get; set; }
        public Terminal(PhoneNumber number) {
@@ -40,12 +42,13 @@ namespace ATSProject.Classes
        }
        public void Plug()
        {
-           throw new NotImplementedException();
+           this.OnPlugging();
        }
        public void Unplug()
        {
-           throw new NotImplementedException();
+           this.OnUnPlugging();
        }
+
 
 
        protected virtual void OnBeginCall() {
@@ -57,6 +60,12 @@ namespace ATSProject.Classes
            if (this.EndCall != null) {
                this.EndCall(this,null);
            }
+       }
+       protected virtual void OnPlugging() {
+           if (this.Plugging != null) { Plugging(this,null); }
+       }
+       protected virtual void OnUnPlugging() {
+           if (this.UnPlugging != null) { UnPlugging(this,null); }
        }
 
 

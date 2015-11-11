@@ -19,6 +19,14 @@ namespace ATSProject
             this._phoneNumber = phoneNumber;
         }
 
+       public static bool operator ==(PhoneNumber obj1,PhoneNumber obj2){
+           if(obj1.Value == obj2.Value)return true;
+           return false;
+       }
+       public static bool operator !=(PhoneNumber obj1,PhoneNumber obj2){
+            if(obj1.Value!=obj2.Value)return true;
+           return false;
+       }
 
        //override == !=
     }
