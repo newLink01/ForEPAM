@@ -12,7 +12,7 @@ namespace ATSProject
     {
         static void Main(string[] args)
         {
-           /* Station st = new Station();
+            Station st = new Station();
             st.SetNewTerminalAndPort(new PhoneNumber("11-11-11"), "Петя");
             st.SetNewTerminalAndPort(new PhoneNumber("22-22-22"), "Витя");
 
@@ -21,9 +21,15 @@ namespace ATSProject
             st.mapping[0].Key.Plug();
             st.mapping[1].Key.Plug();
             st.mapping[0].Key.Call(new PhoneNumber("22-22-22"));
-            */
+
+            Thread.Sleep(3000);
+            st.mapping[1].Key.Drop();
+
+            Console.WriteLine();
+            Console.WriteLine();
+            st.GetConnections();
           
-           
+
 
             Console.ReadKey();
         }

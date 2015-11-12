@@ -10,13 +10,12 @@ namespace ATSProject.Classes
    public class Station : IStation
     {
 
-      private List<CallInfo> callCollection;//для текущих разговоров
-      private List<CallInfo> connectionCollection; // для соединений 
+      private List<CallInfo> connectionCollection; // для соединений текущих
       public List<KeyValuePair<ITerminal, IPort>> mapping;
+      public List<CallInfo> history;
 
        public Station() {
-           
-           this.callCollection = new List<CallInfo>();
+           history = new List<CallInfo>();
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
@@ -31,10 +30,8 @@ namespace ATSProject.Classes
            obj.IncomingRequest += this.IncomingRequestFromHandler;
            obj.Plugging += this.PluggingHandler;
            obj.UnPlugging += this.UnPluggingHandler;
-           
+           obj.EndCall += this.EndCallHandler;
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
-
-
 
            }
 
@@ -77,8 +74,8 @@ namespace ATSProject.Classes
                        started = DateTime.Now
                    };
                     //
-                   targetTerminal.IncomingRequestFrom(sender.Number);
                    connectionCollection.Add(callInfo);
+                   targetTerminal.IncomingRequestFrom();
                     //
                }
                else{
@@ -112,6 +109,7 @@ namespace ATSProject.Classes
 
            IPort port = this.GetPortByPhoneNumber(t.Number);
            port.State = PortState.Busy;
+           Console.WriteLine("Call accepted.");
        }
 
 
@@ -130,13 +128,30 @@ namespace ATSProject.Classes
        }
 
 
-       public void EndCallHandler(object o, CallInfo e) {
-           this.GetPortByPhoneNumber(e.target.Number).State = PortState.Free;
-           this.GetPortByPhoneNumber(e.source.Number).State = PortState.Free;
-           e.duration = DateTime.Now - e.started;
+       public void EndCallHandler(object o,EventArgs p) {
+
+           var ci = this.connectionCollection.FirstOrDefault(x => x.source.Number.Value == (o as ITerminal).Number.Value || x.target.Number.Value == (o as ITerminal).Number.Value);
+           
+
+          /* this.GetPortByPhoneNumber(ci.target.Number).State = PortState.Free;
+           this.GetPortByPhoneNumber(ci.source.Number).State = PortState.Free;*/
+           /*ci.duration = DateTime.Now - ci.started;
+           this.history.Add(ci);
+           this.connectionCollection.Remove(ci);*/
+           if(ci == null)
+           Console.WriteLine("null");
        }
 
+       public void GetConnections() {
+           foreach (var c in this.connectionCollection) {
+               Console.WriteLine(c.source.UserName + 
+                   ",\n " + c.source.Number.Value + " ,\n " + 
+                   c.target.Number.Value + " ,\n Started: " + c.started + 
+                   " ,\n Duration: " + c.duration
+                   ); 
 
+           }
+       }
 
 
        }

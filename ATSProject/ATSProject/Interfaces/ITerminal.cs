@@ -17,7 +17,7 @@ namespace ATSProject.Interfaces
       void Answer();
       void Plug();
       void Unplug();
-      void IncomingRequestFrom(PhoneNumber source);
+      void IncomingRequestFrom();
 
        event EventHandler<PhoneNumber> OutgoingConnection;
        event EventHandler EndCall;
