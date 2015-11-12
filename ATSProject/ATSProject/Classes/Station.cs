@@ -9,15 +9,16 @@ namespace ATSProject.Classes
 {
    public class Station : IStation
     {
-       private EventHandler<PhoneNumber> BeginCallHandler;
 
-      private List<CallInfo> callHistory;
+      private List<CallInfo> callCollection;//для текущих разговоров
+      private List<CallInfo> connectionCollection; // для соединений 
       public List<KeyValuePair<ITerminal, IPort>> mapping;
 
        public Station() {
            
-           this.callHistory = new List<CallInfo>();
+           this.callCollection = new List<CallInfo>();
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
+           this.connectionCollection = new List<CallInfo>();
        }
 
 
@@ -72,13 +73,13 @@ namespace ATSProject.Classes
                    var callInfo = new CallInfo()
                    {
                        source = sender,
-                       target = targetPhone,
+                       target = targetTerminal,
                        started = DateTime.Now
                    };
                     //
                    targetTerminal.IncomingRequestFrom(sender.Number);
+                   connectionCollection.Add(callInfo);
                     //
-
                }
                else{
                    Console.WriteLine("Cannot connect to target port.");  
@@ -94,7 +95,7 @@ namespace ATSProject.Classes
 
 
 
-       private void IncomingRequestFromHandler(object o, PhoneNumber source) {
+       private void IncomingRequestFromHandler(object o,EventArgs e) {
            ITerminal obj = o as Terminal;
 
            Console.WriteLine("Select action: \n1)Answer \n2)Drop");
@@ -129,15 +130,11 @@ namespace ATSProject.Classes
        }
 
 
-       public void EndCallHandler(object o, EventArgs e) {
-           ITerminal t = o as Terminal;
-           this.GetPortByPhoneNumber(t.Number).State = PortState.Free;
-
-
-
-
+       public void EndCallHandler(object o, CallInfo e) {
+           this.GetPortByPhoneNumber(e.target.Number).State = PortState.Free;
+           this.GetPortByPhoneNumber(e.source.Number).State = PortState.Free;
+           e.duration = DateTime.Now - e.started;
        }
-
 
 
 

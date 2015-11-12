@@ -9,7 +9,7 @@ namespace ATSProject.Classes
    public class CallInfo
     {
      public ITerminal source;
-     public PhoneNumber target;
+     public ITerminal target;
      public DateTime started;
      public TimeSpan duration;
 

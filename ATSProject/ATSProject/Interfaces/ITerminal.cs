@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ATSProject.Classes;
 namespace ATSProject.Interfaces
 {
   public interface ITerminal
@@ -23,7 +23,7 @@ namespace ATSProject.Interfaces
        event EventHandler EndCall;
        event EventHandler Plugging;
        event EventHandler UnPlugging;
-       event EventHandler<PhoneNumber> IncomingRequest;
+       event EventHandler IncomingRequest;
 
     }
 }

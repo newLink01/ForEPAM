@@ -15,7 +15,7 @@ namespace ATSProject.Classes
        public event EventHandler EndCall;
        public event EventHandler Plugging;
        public event EventHandler UnPlugging;
-       public event EventHandler<PhoneNumber> IncomingRequest;
+       public event EventHandler IncomingRequest;
 
 
        public string UserName { set; get; }
@@ -49,8 +49,8 @@ namespace ATSProject.Classes
            this.OnUnPlugging();
        }
 
-       public void IncomingRequestFrom(PhoneNumber source) {
-           this.OnIncomingRequest(source);
+       public void IncomingRequestFrom() {
+           this.OnIncomingRequest();
 
        }
 
@@ -69,8 +69,8 @@ namespace ATSProject.Classes
        protected virtual void OnUnPlugging() {
            if (this.UnPlugging != null) { UnPlugging(this,null); }
        }
-       protected virtual void OnIncomingRequest(PhoneNumber source) {
-           if (this.IncomingRequest != null) { this.IncomingRequest(this,source); }
+       protected virtual void OnIncomingRequest() {
+           if (this.IncomingRequest != null) { this.IncomingRequest(this,null); }
        }
 
 
