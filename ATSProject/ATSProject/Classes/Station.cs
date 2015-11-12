@@ -11,23 +11,34 @@ namespace ATSProject.Classes
     {
        private EventHandler<PhoneNumber> BeginCallHandler;
 
-       List<CallInfo> callHistory;
-       List<KeyValuePair<ITerminal, IPort>> mapping;
-       List<CallInfo> callCollection;
-      // List<IPort> portCollection;
+      private List<CallInfo> callHistory;
+      public List<KeyValuePair<ITerminal, IPort>> mapping;
 
        public Station() {
            
-           this.callCollection = new List<CallInfo>();
            this.callHistory = new List<CallInfo>();
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
-         //  this.portCollection = new List<IPort>();
        }
 
-       //в функции подписка
+
+
+
        public void SetNewTerminalAndPort(PhoneNumber number,string name) {
-           mapping.Add(new KeyValuePair<ITerminal,IPort>(new Terminal(number,name),new Port()));
+           ITerminal obj = new Terminal(number, name);
+
+           obj.OutgoingConnection += this.SetCall;
+           obj.IncomingRequest += this.IncomingRequestFromHandler;
+           obj.Plugging += this.PluggingHandler;
+           obj.UnPlugging += this.UnPluggingHandler;
+           
+           mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
+
+
+
            }
+
+
+
 
        private IPort GetPortByPhoneNumber(PhoneNumber obj) {
 
@@ -44,37 +55,83 @@ namespace ATSProject.Classes
 
 
 
-       private void SetConnection(ITerminal sender,PhoneNumber targetPhone) {
-          
+       private void SetCall(object t,PhoneNumber targetPhone) {
 
+        ITerminal sender =  t as Terminal;
+          
 
            if (this.GetPortByPhoneNumber(sender.Number).State == PortState.Free) {
                GetPortByPhoneNumber(sender.Number).State = PortState.Busy;
 
-               if (this.GetPortByPhoneNumber(targetPhone).State == PortState.Free) { 
-                   var callInfo = new CallInfo(){
-                        source = sender,
-                        target = targetPhone,
-                        started = Date
-                   }
+               ITerminal targetTerminal = this.GetTerminalByPhoneNumber(targetPhone);
+               IPort targetPort = this.GetPortByPhoneNumber(targetPhone);
 
+               if (targetPort.State == PortState.Free) {
 
-
+                   Console.WriteLine();
+                   var callInfo = new CallInfo()
+                   {
+                       source = sender,
+                       target = targetPhone,
+                       started = DateTime.Now
+                   };
+                    //
+                   targetTerminal.IncomingRequestFrom(sender.Number);
+                    //
 
                }
                else{
-                    
+                   Console.WriteLine("Cannot connect to target port.");  
                }
 
            }
-
-
-           if (this.GetPortByPhoneNumber(sender.Number).State == PortState.UnPlagged || this.GetPortByPhoneNumber(sender.Number).State == PortState.Busy) {
-               Console.WriteLine("Cant connect to the your port.Check port settings.");
+           else {
+               Console.WriteLine("Cant connect to your port.Check port settings.");
                return; }
-       } 
-      
 
+
+       }
+
+
+
+       private void IncomingRequestFromHandler(object o, PhoneNumber source) {
+           ITerminal obj = o as Terminal;
+
+           Console.WriteLine("Select action: \n1)Answer \n2)Drop");
+           string p = Console.ReadLine();
+           switch (p) {
+               case "1": obj.Answer(); break;
+               case "2": obj.Drop(); break;
+               default: Console.WriteLine(); break;
+           }
+       }
+
+       private void AnswerHandler(object o,EventArgs e) {
+           ITerminal t = o as Terminal;
+
+           IPort port = this.GetPortByPhoneNumber(t.Number);
+           port.State = PortState.Busy;
+       }
+
+
+       public void ShowTerminalsAndPorts() {
+           foreach (var c in this.mapping) {
+               Console.WriteLine(c.Key.Number.Value + " " + c.Value.State);
+           }
+       }
+       public void PluggingHandler(object o , EventArgs e) {
+           ITerminal t = o as Terminal;
+           this.GetPortByPhoneNumber(t.Number).State = PortState.Free;
+       }
+       public void UnPluggingHandler(object o, EventArgs e) {
+           ITerminal t = o as Terminal;
+           this.GetPortByPhoneNumber(t.Number).State = PortState.UnPlagged;
+       }
+
+
+       public void EndCallHandler(object o, EventArgs e) {
+           ITerminal t = o as Terminal;
+           this.GetPortByPhoneNumber(t.Number).State = PortState.Free;
 
 
 
@@ -85,8 +142,6 @@ namespace ATSProject.Classes
 
 
 
-
-
-
+       }
     }
 

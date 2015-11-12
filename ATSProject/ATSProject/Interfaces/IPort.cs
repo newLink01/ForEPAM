@@ -11,7 +11,7 @@ namespace ATSProject.Interfaces
 
       PortState State { set; get; }
 
-      event EventHandler<PortState> StateChanging;
-      event EventHandler<PortState> StateChanged;
+     /* event EventHandler<PortState> StateChanging;
+      event EventHandler<PortState> StateChanged;*/
     }
 }
