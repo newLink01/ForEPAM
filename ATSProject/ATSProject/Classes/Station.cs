@@ -26,11 +26,13 @@ namespace ATSProject.Classes
        public void SetNewTerminalAndPort(PhoneNumber number,string name) {
            ITerminal obj = new Terminal(number, name);
 
-           obj.OutgoingConnection += this.SetCall;
+           obj.OutgoingConnection += this.OutgoingConnectionHandler;
            obj.IncomingRequest += this.IncomingRequestFromHandler;
            obj.Plugging += this.PluggingHandler;
            obj.UnPlugging += this.UnPluggingHandler;
            obj.EndCall += this.EndCallHandler;
+           obj.InitAnswer += this.AnswerHandler;
+
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
 
            }
@@ -53,7 +55,7 @@ namespace ATSProject.Classes
 
 
 
-       private void SetCall(object t,PhoneNumber targetPhone) {
+       private void OutgoingConnectionHandler(object t,PhoneNumber targetPhone) {
 
         ITerminal sender =  t as Terminal;
           
@@ -71,7 +73,7 @@ namespace ATSProject.Classes
                    {
                        source = sender,
                        target = targetTerminal,
-                       started = DateTime.Now
+                       //started = DateTime.Now
                    };
                     //
                    connectionCollection.Add(callInfo);
@@ -85,10 +87,13 @@ namespace ATSProject.Classes
            }
            else {
                Console.WriteLine("Cant connect to your port.Check port settings.");
-               return; }
+           }
 
 
        }
+
+
+
 
 
 
@@ -104,9 +109,12 @@ namespace ATSProject.Classes
            }
        }
 
+
+
        private void AnswerHandler(object o,EventArgs e) {
            ITerminal t = o as Terminal;
 
+           this.connectionCollection.FirstOrDefault(x => x.target.Number.Value == t.Number.Value).started = DateTime.Now;
            IPort port = this.GetPortByPhoneNumber(t.Number);
            port.State = PortState.Busy;
            Console.WriteLine("Call accepted.");
@@ -128,22 +136,29 @@ namespace ATSProject.Classes
        }
 
 
+
+
+
        public void EndCallHandler(object o,EventArgs p) {
 
-           var ci = this.connectionCollection.FirstOrDefault(x => x.source.Number.Value == (o as ITerminal).Number.Value || x.target.Number.Value == (o as ITerminal).Number.Value);
-           
+           ITerminal t = o as ITerminal;
+           var ci = this.connectionCollection.FirstOrDefault(x => x.source.Number.Value == t.Number.Value || x.target.Number.Value == t.Number.Value);
 
-          /* this.GetPortByPhoneNumber(ci.target.Number).State = PortState.Free;
-           this.GetPortByPhoneNumber(ci.source.Number).State = PortState.Free;*/
-           /*ci.duration = DateTime.Now - ci.started;
-           this.history.Add(ci);
-           this.connectionCollection.Remove(ci);*/
+           if (ci != null)
+           {
+               this.GetPortByPhoneNumber(ci.target.Number).State = PortState.Free;
+               this.GetPortByPhoneNumber(ci.source.Number).State = PortState.Free;
+               ci.duration = DateTime.Now - ci.started;
+               this.history.Add(ci);
+               this.connectionCollection.Remove(ci);
+           }
+
            if(ci == null)
            Console.WriteLine("null");
        }
 
-       public void GetConnections() {
-           foreach (var c in this.connectionCollection) {
+       public void GetHistory() {
+           foreach (var c in this.history) {
                Console.WriteLine(c.source.UserName + 
                    ",\n " + c.source.Number.Value + " ,\n " + 
                    c.target.Number.Value + " ,\n Started: " + c.started + 
@@ -152,6 +167,8 @@ namespace ATSProject.Classes
 
            }
        }
+
+
 
 
        }

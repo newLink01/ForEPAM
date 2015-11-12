@@ -24,6 +24,7 @@ namespace ATSProject.Interfaces
        event EventHandler Plugging;
        event EventHandler UnPlugging;
        event EventHandler IncomingRequest;
+       event EventHandler InitAnswer;
 
     }
 }

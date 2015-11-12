@@ -17,7 +17,6 @@ namespace ATSProject
             st.SetNewTerminalAndPort(new PhoneNumber("22-22-22"), "Витя");
 
             st.ShowTerminalsAndPorts();
-            st.mapping[0].Key.Call(new PhoneNumber("22-22-22"));
             st.mapping[0].Key.Plug();
             st.mapping[1].Key.Plug();
             st.mapping[0].Key.Call(new PhoneNumber("22-22-22"));
@@ -27,10 +26,11 @@ namespace ATSProject
 
             Console.WriteLine();
             Console.WriteLine();
-            st.GetConnections();
+            st.GetHistory();
           
+            
 
-
+          
             Console.ReadKey();
         }
 

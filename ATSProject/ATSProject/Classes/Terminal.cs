@@ -16,7 +16,7 @@ namespace ATSProject.Classes
        public event EventHandler Plugging;
        public event EventHandler UnPlugging;
        public event EventHandler IncomingRequest;
-
+       public event EventHandler InitAnswer;
 
        public string UserName { set; get; }
        public PhoneNumber Number { get; set; }
@@ -26,10 +26,11 @@ namespace ATSProject.Classes
            this.UserName = name;
        }
 
-   
+ 
 
        public void Call(PhoneNumber target)
        {
+           Console.WriteLine("\n\nCalling...");
            this.OnOutgoingConnection(target);
        }
        public void Drop()
@@ -38,7 +39,7 @@ namespace ATSProject.Classes
        }
        public void Answer()
        {
-
+           OnInitAnswer();
        }
        public void Plug()
        {
@@ -48,7 +49,6 @@ namespace ATSProject.Classes
        {
            this.OnUnPlugging();
        }
-
        public void IncomingRequestFrom() {
            this.OnIncomingRequest();
 
@@ -72,7 +72,10 @@ namespace ATSProject.Classes
        protected virtual void OnIncomingRequest() {
            if (this.IncomingRequest != null) { this.IncomingRequest(this,null); }
        }
-       
+       protected virtual void OnInitAnswer() {
+           if (this.InitAnswer != null) { InitAnswer(this,null); }
+       }
+
 
     }
 }
