@@ -157,6 +157,8 @@ namespace ATSProject.Classes
            Console.WriteLine("null");
        }
 
+
+
        public void GetHistory() {
            foreach (var c in this.history) {
                Console.WriteLine(c.source.UserName + 
