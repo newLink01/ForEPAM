@@ -157,6 +157,7 @@ namespace ATSProject.Classes
                ITerminal t = o as ITerminal;
                var ci = this.connectionCollection.FirstOrDefault(x => x.source.Number.Value == t.Number.Value || x.target.Number.Value == t.Number.Value);
 
+
                if (ci != null)
                {
                    this.GetPortByPhoneNumber(ci.target.Number).State = PortState.Free;
