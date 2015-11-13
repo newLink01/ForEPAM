@@ -26,7 +26,7 @@ namespace ATSProject
             st.mapping[2].Key.Plug();
 
             st.mapping[0].Key.Call(new PhoneNumber("22-22-22"));
-            st.mapping[2].Key.Call(new PhoneNumber("22-22-22"));
+           // st.mapping[2].Key.Call(new PhoneNumber("22-22-22"));
 
 
             Thread.Sleep(3000);

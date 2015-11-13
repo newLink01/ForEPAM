@@ -41,12 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BillingSystem.cs" />
     <Compile Include="Classes\CallInfo.cs" />
     <Compile Include="Classes\PhoneNumber.cs" />
     <Compile Include="Classes\Port.cs" />
     <Compile Include="Classes\PortState.cs" />
+    <Compile Include="Classes\Rates.cs" />
     <Compile Include="Classes\Station.cs" />
     <Compile Include="Classes\Terminal.cs" />
+    <Compile Include="Interfaces\IBillingSystem.cs" />
     <Compile Include="Interfaces\IPort.cs" />
     <Compile Include="Interfaces\IStation.cs" />
     <Compile Include="Interfaces\ITerminal.cs" />

@@ -79,6 +79,7 @@ namespace ATSProject.Classes
                        {
                            source = sender,
                            target = targetTerminal,
+                           started = DateTime.Now
                        };
                        //
                        connectionCollection.Add(callInfo);
@@ -120,8 +121,7 @@ namespace ATSProject.Classes
            if (o is ITerminal)
            {
                ITerminal t = o as Terminal;
-
-               this.connectionCollection.FirstOrDefault(x => x.target.Number.Value == t.Number.Value).started = DateTime.Now;
+               this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).Connected = true;
                Console.WriteLine("Call accepted.");
            }
        }
@@ -161,7 +161,10 @@ namespace ATSProject.Classes
                {
                    this.GetPortByPhoneNumber(ci.target.Number).State = PortState.Free;
                    this.GetPortByPhoneNumber(ci.source.Number).State = PortState.Free;
-                   ci.duration = DateTime.Now - ci.started;
+
+                   if (ci.Connected == true) { ci.duration = DateTime.Now - ci.started; }
+
+                   else { ci.duration = new TimeSpan(0, 0, 0, 0, 0); }
                    this.history.Add(ci);
                    this.connectionCollection.Remove(ci);
                }

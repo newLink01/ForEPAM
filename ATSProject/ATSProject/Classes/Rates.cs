@@ -1,0 +1,4 @@
+﻿enum Rates { 
+        FirstPartExpensiveAfterFree,
+        ConstMiddleRate
+};
