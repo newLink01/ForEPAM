@@ -30,7 +30,7 @@ namespace ATSProject.Classes
 
        public void Call(PhoneNumber target)
        {
-           Console.WriteLine("\n\nCalling...");
+           //Console.WriteLine("\n\nCalling ");
            this.OnOutgoingConnection(target);
        }
        public void Drop()
