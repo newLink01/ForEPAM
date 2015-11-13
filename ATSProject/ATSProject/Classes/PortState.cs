@@ -2,5 +2,5 @@
 {
     Free,
     Busy,
-    UnPlagged
+    UnPlugged
 }

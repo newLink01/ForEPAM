@@ -9,7 +9,8 @@ namespace ATSProject.Interfaces
   public interface ITerminal
     {
       PhoneNumber Number { get; set; }
-      string UserName { get; }
+      string UserName { get; set; }
+      Rates CurrentRate { set; get; }
 
       void Call(PhoneNumber target);
      // void IncomingRequestFrom(PhoneNumber source);
@@ -18,6 +19,7 @@ namespace ATSProject.Interfaces
       void Plug();
       void Unplug();
       void IncomingRequestFrom();
+      void ChangeRate(Rates rate);
 
        event EventHandler<PhoneNumber> OutgoingConnection;
        event EventHandler EndCall;

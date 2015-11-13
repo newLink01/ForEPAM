@@ -14,7 +14,7 @@ namespace ATSProject.Classes
            get;
            set;
        }
-       public Port() { State = PortState.UnPlagged; }
+       public Port() { State = PortState.UnPlugged; }
 
 
        /* public event EventHandler<PortState> StateChanging;

@@ -51,6 +51,7 @@
     <Compile Include="Classes\Terminal.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
     <Compile Include="Interfaces\IPort.cs" />
+    <Compile Include="Interfaces\IShouldClearAllEvents.cs" />
     <Compile Include="Interfaces\IStation.cs" />
     <Compile Include="Interfaces\ITerminal.cs" />
     <Compile Include="Program.cs" />

@@ -1,4 +1,4 @@
-﻿enum Rates { 
+﻿public enum Rates { 
         FirstPartExpensiveAfterFree,
         ConstMiddleRate
 };

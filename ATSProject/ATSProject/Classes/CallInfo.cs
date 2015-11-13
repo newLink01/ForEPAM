@@ -12,6 +12,7 @@ namespace ATSProject.Classes
      public ITerminal target;
      public DateTime started;
      public TimeSpan duration;
+     public Rates CurrentRate;
      public bool Connected;
     }
 }

@@ -10,12 +10,12 @@ namespace ATSProject.Classes
    public class Station : IStation
     {
 
-      private List<CallInfo> connectionCollection; // для соединений текущих
+      private List<CallInfo> connectionCollection; 
       public List<KeyValuePair<ITerminal, IPort>> mapping;
-      public List<CallInfo> history;
+      public IBillingSystem BS;
 
-       public Station() {
-           history = new List<CallInfo>();
+       public Station(BillingSystem obj) {
+           this.BS = obj;
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
@@ -23,8 +23,8 @@ namespace ATSProject.Classes
 
 
 
-       public void SetNewTerminalAndPort(PhoneNumber number,string name) {
-           ITerminal obj = new Terminal(number, name);
+       public void SetNewTerminalAndPort(PhoneNumber number,string name,Rates rate) {
+           ITerminal obj = new Terminal(number, name,rate);
 
            obj.OutgoingConnection += this.OutgoingConnectionHandler;
            obj.IncomingRequest += this.IncomingRequestFromHandler;
@@ -79,7 +79,8 @@ namespace ATSProject.Classes
                        {
                            source = sender,
                            target = targetTerminal,
-                           started = DateTime.Now
+                           //started = DateTime.Now,
+                           CurrentRate = sender.CurrentRate
                        };
                        //
                        connectionCollection.Add(callInfo);
@@ -122,6 +123,7 @@ namespace ATSProject.Classes
            {
                ITerminal t = o as Terminal;
                this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).Connected = true;
+               this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).started = DateTime.Now;
                Console.WriteLine("Call accepted.");
            }
        }
@@ -143,7 +145,7 @@ namespace ATSProject.Classes
        }
        public void UnPluggingHandler(object o, EventArgs e) {
            ITerminal t = o as Terminal;
-           this.GetPortByPhoneNumber(t.Number).State = PortState.UnPlagged;
+           this.GetPortByPhoneNumber(t.Number).State = PortState.UnPlugged;
        }
 
 
@@ -151,10 +153,12 @@ namespace ATSProject.Classes
 
 
        public void EndCallHandler(object o,EventArgs p) {
-
            if (o is ITerminal)
            {
                ITerminal t = o as ITerminal;
+               
+               Console.WriteLine("\nEnd call by " + t.UserName );
+
                var ci = this.connectionCollection.FirstOrDefault(x => x.source.Number.Value == t.Number.Value || x.target.Number.Value == t.Number.Value);
 
 
@@ -166,7 +170,7 @@ namespace ATSProject.Classes
                    if (ci.Connected == true) { ci.duration = DateTime.Now - ci.started; }
 
                    else { ci.duration = new TimeSpan(0, 0, 0, 0, 0); }
-                   this.history.Add(ci);
+                   this.BS.CallHistory.Add(ci); 
                    this.connectionCollection.Remove(ci);
                }
 
@@ -176,17 +180,6 @@ namespace ATSProject.Classes
        }
 
 
-
-       public void GetHistory() {
-           foreach (var c in this.history) {
-               Console.WriteLine(c.source.UserName + 
-                   ",\n " + c.source.Number.Value + " ,\n " + 
-                   c.target.Number.Value + " ,\n Started: " + c.started + 
-                   " ,\n Duration: " + c.duration
-                   ); 
-
-           }
-       }
 
 
 
