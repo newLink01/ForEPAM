@@ -27,20 +27,23 @@ namespace ATSProject
             st.mapping[2].Key.Plug();
             st.ShowTerminalsAndPorts();
             st.mapping[0].Key.Call(new PhoneNumber("22-22-22"));
-            st.mapping[2].Key.Call(new PhoneNumber("22-22-22"));
+           // st.mapping[2].Key.Call(new PhoneNumber("22-22-22"));
 
 
             Thread.Sleep(1000);
-            //st.mapping[0].Key.Drop();
+            st.mapping[0].Key.Drop();
             //st.mapping[2].Key.Call(new PhoneNumber("22-22-22"));
-            st.mapping[2].Key.Drop();
-           /* Console.WriteLine();
+          //  st.mapping[2].Key.Drop();
             Console.WriteLine();
-            */
+            Console.WriteLine();
+            st.mapping[1].Key.Call(new PhoneNumber("33-33-33"));
+            Thread.Sleep(4000);
+            st.mapping[1].Key.Drop();
             bilSys.GetBills();
-            
-            
-
+           
+           /* TimeSpan s = new TimeSpan(0, 0, 61);
+            Console.WriteLine(  Math.Round(s.TotalMinutes+1));
+            */
 
 
            

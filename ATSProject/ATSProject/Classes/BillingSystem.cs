@@ -18,10 +18,26 @@ namespace ATSProject.Classes
 
 
       public void GetBills(){
-          CallHistory.OrderBy(x => x.source.UserName);
+          //CallHistory.OrderBy(x => x.source.UserName);
+          double Cost ;
+          foreach (var c in CallHistory.OrderBy(x=>x.source.UserName)) {
+              Cost = 0;
 
-          foreach (var c in CallHistory) {
-              Console.WriteLine(c.source.UserName + " " + c.target.UserName + " " + c.duration);
+              if (c.CurrentRate == Rates.ConstMiddleRate) {
+                  Cost = Math.Round(c.duration.TotalMinutes+1) * 50;  
+              }
+
+              if (c.CurrentRate == Rates.FirstPartExpensiveAfterFree) {
+                  Cost += (Math.Round(c.duration.TotalMinutes/3 + 1)) * 80;
+                  Cost += (Math.Round(c.duration.TotalMinutes+1) - (Math.Round(c.duration.TotalMinutes/3 + 1) ) ) * 20;
+              }
+
+
+              Console.WriteLine("\n\nName : " + c.source.UserName + 
+                  " \nTargetName : " + c.target.UserName + 
+                  "\nBegin call at : " + c.started + "\nDuration : " + c.duration + 
+                  "\nCost : " + Cost
+                  );
           }
 
 
