@@ -13,7 +13,7 @@ namespace ATSProject.Interfaces
        void InvokeUpdateCallHistory(CallInfo information);
 
        event EventHandler<CallInfo> UpdateCallHistory;
-       event EventHandler<ITerminal> RequestForGetHistory;
+       //event EventHandler<HistoryFilter> RequestForGetHistory;
 
 
     }

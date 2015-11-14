@@ -12,10 +12,11 @@ namespace ATSProject.Classes
         private List<CallInfo> connectionCollection; 
         public List<KeyValuePair<ITerminal, IPort>> mapping;
         private IBillingSystem BS;
-
+        
        public Station(BillingSystem obj) {
            BS = obj;
-           BS.UpdateCallHistory += this.UpdateCallHistoryHandler;
+           BS.UpdateCallHistory += this.UpdateBillingSystemHandler ;
+         
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
@@ -32,7 +33,6 @@ namespace ATSProject.Classes
            obj.UnPlugging += this.UnPluggingHandler;
            obj.EndCall += this.EndCallHandler;
            obj.InitAnswer += this.AnswerHandler;
-           //obj.RequestForHistory
 
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
 
@@ -141,6 +141,7 @@ namespace ATSProject.Classes
            this.GetPortByPhoneNumber(t.Number).State = PortState.UnPlugged;
            
        }
+
        public void EndCallHandler(object o,EventArgs p) {
            if (o is ITerminal)
            {
@@ -159,27 +160,26 @@ namespace ATSProject.Classes
                    if (ci.Connected == true) { ci.duration = (DateTime.Now - ci.started); }
 
                    else { ci.duration = new TimeSpan(0, 0, 0, 0, 0); }
+                   this.connectionCollection.Remove(ci);
                    BS.InvokeUpdateCallHistory(ci);
-
                }
 
                if (ci == null)
                    Console.WriteLine("null");
            }
        }
-       private void UpdateCallHistoryHandler(object sender,CallInfo information) {
+
+
+
+       private void UpdateBillingSystemHandler(object sender,CallInfo information) {
            if (sender is IBillingSystem) {
                (sender as IBillingSystem).CallHistory.Add(information);
-               this.connectionCollection.Remove(information);
            }
        }
 
+     
 
-       private void RequestForHistoryHandler(HistoryFilter filter) { 
-            
-
-
-       }
+       
 
 
      

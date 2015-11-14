@@ -34,7 +34,7 @@ namespace ATSProject.Classes
               case HistoryFilter.CallDuration: keySelector = x => x.duration; break;
               default: keySelector = x => x.source.UserName; break;
           }
-
+          
           foreach (var c in CallHistory.OrderBy(keySelector))
           {
               Cost = 0;
@@ -71,11 +71,11 @@ namespace ATSProject.Classes
           if (this.UpdateCallHistory != null) { this.UpdateCallHistory(this,information); }
       }
 
-      protected void OnRequestForGetHistory(ITerminal terminal) {
-          if (this.RequestForGetHistory != null) {
-              this.RequestForGetHistory(this, terminal);
-          }
-      }
+      
+
+
+
+      
 
 
 

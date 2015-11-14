@@ -29,7 +29,7 @@ namespace ATSProject.Interfaces
        event EventHandler UnPlugging;
        event EventHandler IncomingRequest;
        event EventHandler InitAnswer;
-       event EventHandler<HistoryFilter> RequestForHistory;
+       event EventHandler<HistoryFilter> RequestForHistoryBy;
        
     }
 }

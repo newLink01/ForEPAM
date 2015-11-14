@@ -17,7 +17,8 @@ namespace ATSProject.Classes
        public event EventHandler UnPlugging;
        public event EventHandler IncomingRequest;
        public event EventHandler InitAnswer;
-       public event EventHandler<HistoryFilter> RequestForHistory;
+       public event EventHandler<HistoryFilter> RequestForHistoryBy;
+
 
        public string UserName { set;get; }
        public PhoneNumber Number { set;get; }
@@ -77,14 +78,17 @@ namespace ATSProject.Classes
            return false;
        }
 
-
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="filter"></param>
        public void GetCallHistoryBy(HistoryFilter filter) {
 
-           this.OnRequestForHistory(filter);
+           this.OnRequestForHistoryBy(filter);
 
        }
 
-       
+    
        protected virtual void OnOutgoingConnection(PhoneNumber e) {
            if (this.OutgoingConnection != null) { OutgoingConnection(this,e); }
        }
@@ -105,8 +109,8 @@ namespace ATSProject.Classes
        protected virtual void OnInitAnswer() {
            if (this.InitAnswer != null) { InitAnswer(this,null); }
        }
-       protected virtual void OnRequestForHistory(HistoryFilter filter) {
-           if (this.RequestForHistory != null) { this.RequestForHistory(this,filter); } 
+       protected virtual void OnRequestForHistoryBy(HistoryFilter filter) {
+           if (this.RequestForHistoryBy != null) { this.RequestForHistoryBy(this,filter); } 
 
        }
 
