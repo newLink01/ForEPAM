@@ -41,7 +41,7 @@ namespace ATSProject
          //   st.mapping[1].Key.Call(new PhoneNumber("33-33-33"));
          //   Thread.Sleep(4000);
            // st.mapping[1].Key.Drop();
-            bilSys.GetBills(HistoryFilter.CallDuration);
+            bilSys.RequestHistoryHandler(HistoryFilter.CallDuration);
           
             
 

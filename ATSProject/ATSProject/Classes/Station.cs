@@ -16,7 +16,7 @@ namespace ATSProject.Classes
         
        public Station(BillingSystem obj) {
 
-           this.UpdateBillingSystem += obj.InvokeUpdate;
+           this.UpdateBillingSystem += obj.UpdateBillingSystemHandler;
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
