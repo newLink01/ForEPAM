@@ -47,11 +47,12 @@
     <Compile Include="Classes\Port.cs" />
     <Compile Include="Classes\PortState.cs" />
     <Compile Include="Classes\Rates.cs" />
+    <Compile Include="Classes\ScalingTime.cs" />
     <Compile Include="Classes\Station.cs" />
     <Compile Include="Classes\Terminal.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
     <Compile Include="Interfaces\IPort.cs" />
-    <Compile Include="Interfaces\IShouldClearAllEvents.cs" />
+    <Compile Include="Interfaces\IShouldClearEvents.cs" />
     <Compile Include="Interfaces\IStation.cs" />
     <Compile Include="Interfaces\ITerminal.cs" />
     <Compile Include="Program.cs" />

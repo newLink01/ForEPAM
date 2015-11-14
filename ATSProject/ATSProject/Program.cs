@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using ATSProject.Classes;
 using ATSProject.Interfaces;
 using System.Threading;
+
 namespace ATSProject
 {
-    
-
     class Program
     {
         static void Main(string[] args)
@@ -22,6 +21,7 @@ namespace ATSProject
             st.SetNewTerminalAndPort(new PhoneNumber("33-33-33"), "Жека",Rates.FirstPartExpensiveAfterFree);
 
 
+            /*
             st.mapping[0].Key.Plug();
             st.mapping[1].Key.Plug();
             st.mapping[2].Key.Plug();
@@ -36,18 +36,18 @@ namespace ATSProject
           //  st.mapping[2].Key.Drop();
             Console.WriteLine();
             Console.WriteLine();
-            st.mapping[1].Key.Call(new PhoneNumber("33-33-33"));
-            Thread.Sleep(4000);
-            st.mapping[1].Key.Drop();
+         //   st.mapping[1].Key.Call(new PhoneNumber("33-33-33"));
+         //   Thread.Sleep(4000);
+           // st.mapping[1].Key.Drop();
             bilSys.GetBills();
-           
-           /* TimeSpan s = new TimeSpan(0, 0, 61);
-            Console.WriteLine(  Math.Round(s.TotalMinutes+1));
-            */
+          */
+
 
 
            
+            
           
+
             Console.ReadKey();
         }
 

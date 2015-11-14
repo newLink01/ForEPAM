@@ -7,8 +7,9 @@ using ATSProject.Interfaces;
 
 namespace ATSProject.Classes
 {
-   public class Terminal : ITerminal,IShouldClearAllEvents
+   public class Terminal : ITerminal,IShouldClearEvents
     {
+      
 
        public event EventHandler<PhoneNumber> OutgoingConnection;
        public event EventHandler EndCall;
@@ -20,11 +21,13 @@ namespace ATSProject.Classes
        public string UserName { set;get; }
        public PhoneNumber Number { set;get; }
        public Rates CurrentRate { set; get; }
+       public DateTime DateOfRateChange { set; get; }
 
        public Terminal(PhoneNumber number,string name,Rates rate) {
            this.Number = number;
            this.UserName = name;
            this.CurrentRate = rate;
+           this.DateOfRateChange = DateTime.Now;
        }
 
  
@@ -63,8 +66,14 @@ namespace ATSProject.Classes
            InitAnswer = null;
        }
 
-       public void ChangeRate(Rates rate) {
-           this.CurrentRate = rate;
+       public bool ChangeRate(Rates rate) {
+
+           if (DateTime.Now >= (this.DateOfRateChange))
+           {
+               this.CurrentRate = rate;
+               return true;
+           }
+           return false;
        }
 
        protected virtual void OnOutgoingConnection(PhoneNumber e) {

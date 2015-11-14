@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATSProject.Interfaces
 {
-  public interface IShouldClearAllEvents
+  public interface IShouldClearEvents
     {
       void ClearAllEvents();
     }

@@ -9,13 +9,13 @@ namespace ATSProject.Classes
 {
    public class Station : IStation
     {
-
-      private List<CallInfo> connectionCollection; 
-      public List<KeyValuePair<ITerminal, IPort>> mapping;
-      public IBillingSystem BS;
+        private List<CallInfo> connectionCollection; 
+        public List<KeyValuePair<ITerminal, IPort>> mapping;
+        private IBillingSystem BS;
 
        public Station(BillingSystem obj) {
-           this.BS = obj;
+           BS = obj;
+           BS.UpdateCallHistory += this.UpdateCallHistoryHandler;
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
@@ -38,9 +38,6 @@ namespace ATSProject.Classes
            }
 
 
-
-
-
        private IPort GetPortByPhoneNumber(PhoneNumber obj) {
 
            return mapping.FirstOrDefault(x => x.Key.Number == obj).Value;
@@ -60,7 +57,7 @@ namespace ATSProject.Classes
 
            if (t is ITerminal)
            {
-               ITerminal sender = t as Terminal;
+               ITerminal sender = t as ITerminal;
 
                if (this.GetPortByPhoneNumber(sender.Number).State == PortState.Free)
                {
@@ -79,7 +76,6 @@ namespace ATSProject.Classes
                        {
                            source = sender,
                            target = targetTerminal,
-                           //started = DateTime.Now,
                            CurrentRate = sender.CurrentRate
                        };
                        //
@@ -100,6 +96,9 @@ namespace ATSProject.Classes
            }
 
        }
+
+
+
        private void IncomingRequestFromHandler(object o,EventArgs e) {
            
            if (o is ITerminal)
@@ -116,8 +115,6 @@ namespace ATSProject.Classes
            }
        }
 
-
-
        private void AnswerHandler(object o,EventArgs e) {
            if (o is ITerminal)
            {
@@ -127,25 +124,25 @@ namespace ATSProject.Classes
                Console.WriteLine("Call accepted.");
            }
        }
-
-
        public void ShowTerminalsAndPorts() {
            foreach (var c in this.mapping) {
                Console.WriteLine(c.Key.UserName + " " + c.Key.Number.ToString() + " " + c.Value.State);
            }
        }
-
        public void PluggingHandler(object o , EventArgs e) {
 
            if (o is ITerminal)
            {
                ITerminal t = o as Terminal;
-               this.GetPortByPhoneNumber(t.Number).State = PortState.Free;
+
+               if (this.GetPortByPhoneNumber(t.Number).State == PortState.Free) { Console.WriteLine("Already plugged."); }
+               else this.GetPortByPhoneNumber(t.Number).State = PortState.Free;
            }
        }
        public void UnPluggingHandler(object o, EventArgs e) {
            ITerminal t = o as Terminal;
            this.GetPortByPhoneNumber(t.Number).State = PortState.UnPlugged;
+           
        }
 
 
@@ -167,11 +164,11 @@ namespace ATSProject.Classes
                    this.GetPortByPhoneNumber(ci.target.Number).State = PortState.Free;
                    this.GetPortByPhoneNumber(ci.source.Number).State = PortState.Free;
 
-                   if (ci.Connected == true) { ci.duration = DateTime.Now - ci.started; }
+                   if (ci.Connected == true) { ci.duration = (DateTime.Now - ci.started); }
 
                    else { ci.duration = new TimeSpan(0, 0, 0, 0, 0); }
-                   this.BS.CallHistory.Add(ci); 
-                   this.connectionCollection.Remove(ci);
+                   BS.InvokeUpdateCallHistory(ci);
+
                }
 
                if (ci == null)
@@ -180,7 +177,17 @@ namespace ATSProject.Classes
        }
 
 
+       private void UpdateCallHistoryHandler(object sender,CallInfo information) {
+           if (sender is IBillingSystem) {
+               (sender as IBillingSystem).CallHistory.Add(information);
+               this.connectionCollection.Remove(information);
+           }
+       }
+       
 
+
+
+     
 
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ATSProject.Interfaces;
 namespace ATSProject.Classes
 {
-   public class CallInfo
+   public class CallInfo : EventArgs
     {
      public ITerminal source;
      public ITerminal target;
