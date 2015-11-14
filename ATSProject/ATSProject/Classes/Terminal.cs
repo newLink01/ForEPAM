@@ -66,6 +66,7 @@ namespace ATSProject.Classes
            UnPlugging = null;
            IncomingRequest = null;
            InitAnswer = null;
+           RequestForHistoryBy = null;
        }
 
        public bool ChangeRate(Rates rate) {
@@ -78,10 +79,7 @@ namespace ATSProject.Classes
            return false;
        }
 
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="filter"></param>
+       
        public void GetCallHistoryBy(HistoryFilter filter) {
 
            this.OnRequestForHistoryBy(filter);

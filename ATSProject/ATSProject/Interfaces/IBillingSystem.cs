@@ -10,9 +10,7 @@ namespace ATSProject.Interfaces
     {
        List<CallInfo> CallHistory { set; get; }
        void GetBills(HistoryFilter filter);
-       void InvokeUpdateCallHistory(CallInfo information);
 
-       event EventHandler<CallInfo> UpdateCallHistory;
        //event EventHandler<HistoryFilter> RequestForGetHistory;
 
 

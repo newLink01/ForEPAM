@@ -32,6 +32,7 @@ namespace ATSProject
 
             Thread.Sleep(1000);
             st.mapping[0].Key.Drop();
+            
             //bilSys.InvokeUpdateCallHistory();
             //st.mapping[2].Key.Call(new PhoneNumber("22-22-22"));
           //  st.mapping[2].Key.Drop();

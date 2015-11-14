@@ -11,8 +11,9 @@ namespace ATSProject.Classes
     {
       private StreamWriter SW;
       public event EventHandler<ITerminal> RequestForGetHistory;
-
       public List<CallInfo> CallHistory { set; get; }
+
+
 
       public BillingSystem() {
           SW = new StreamWriter("Output.txt");
@@ -20,7 +21,11 @@ namespace ATSProject.Classes
       }
 
 
-  
+
+
+
+
+
 
       public void GetBills(HistoryFilter filter)
       {  
@@ -60,25 +65,9 @@ namespace ATSProject.Classes
                   );
           }
       }
-
-
-
-      public void InvokeUpdateCallHistory(CallInfo information) {
-          this.OnUpdateCallHistory(information);
+      public void InvokeUpdate(object sender,CallInfo information) {
+          this.CallHistory.Add(information);
       }
-      public event EventHandler<CallInfo> UpdateCallHistory;
-      protected void OnUpdateCallHistory(CallInfo information) {
-          if (this.UpdateCallHistory != null) { this.UpdateCallHistory(this,information); }
-      }
-
-      
-
-
-
-      
-
-
-
 
 
     }

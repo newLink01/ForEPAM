@@ -11,12 +11,12 @@ namespace ATSProject.Classes
     {
         private List<CallInfo> connectionCollection; 
         public List<KeyValuePair<ITerminal, IPort>> mapping;
-        private IBillingSystem BS;
+        private event EventHandler<CallInfo> UpdateBillingSystem;
+
         
        public Station(BillingSystem obj) {
-           BS = obj;
-           BS.UpdateCallHistory += this.UpdateBillingSystemHandler ;
-         
+
+           this.UpdateBillingSystem += obj.InvokeUpdate;
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
@@ -161,7 +161,7 @@ namespace ATSProject.Classes
 
                    else { ci.duration = new TimeSpan(0, 0, 0, 0, 0); }
                    this.connectionCollection.Remove(ci);
-                   BS.InvokeUpdateCallHistory(ci);
+                   this.OnUpdateBillingSystem(ci);
                }
 
                if (ci == null)
@@ -169,23 +169,12 @@ namespace ATSProject.Classes
            }
        }
 
-
-
-       private void UpdateBillingSystemHandler(object sender,CallInfo information) {
-           if (sender is IBillingSystem) {
-               (sender as IBillingSystem).CallHistory.Add(information);
-           }
+       protected void OnUpdateBillingSystem(CallInfo information) {
+           if (this.UpdateBillingSystem != null) { this.UpdateBillingSystem(this,information); }
        }
-
      
 
-       
-
-
-     
-
-
-
+      
        }
     }
 
