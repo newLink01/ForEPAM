@@ -16,8 +16,10 @@ namespace ATSProject.Classes
 
        public static DateTime ScalingDateTime(DateTime DT) {
 
+           TimeSpan addTimeSpan = new TimeSpan(DT.Minute * 300000000000);
+           DT.Add(addTimeSpan);
 
-           return new DateTime() ;
+           return DT ;
        }
 
 

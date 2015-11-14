@@ -9,8 +9,12 @@ namespace ATSProject.Interfaces
    public interface IBillingSystem
     {
        List<CallInfo> CallHistory { set; get; }
-       void GetBills();
-       event EventHandler<CallInfo> UpdateCallHistory;
+       void GetBills(HistoryFilter filter);
        void InvokeUpdateCallHistory(CallInfo information);
+
+       event EventHandler<CallInfo> UpdateCallHistory;
+       event EventHandler<ITerminal> RequestForGetHistory;
+
+
     }
 }

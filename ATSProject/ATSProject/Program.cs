@@ -21,7 +21,7 @@ namespace ATSProject
             st.SetNewTerminalAndPort(new PhoneNumber("33-33-33"), "Жека",Rates.FirstPartExpensiveAfterFree);
 
 
-            /*
+            
             st.mapping[0].Key.Plug();
             st.mapping[1].Key.Plug();
             st.mapping[2].Key.Plug();
@@ -39,12 +39,13 @@ namespace ATSProject
          //   st.mapping[1].Key.Call(new PhoneNumber("33-33-33"));
          //   Thread.Sleep(4000);
            // st.mapping[1].Key.Drop();
-            bilSys.GetBills();
-          */
+            bilSys.GetBills(HistoryFilter.CallDuration);
+          
+            
 
 
+          
 
-           
             
           
 

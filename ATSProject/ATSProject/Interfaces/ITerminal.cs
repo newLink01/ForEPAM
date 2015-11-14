@@ -20,6 +20,8 @@ namespace ATSProject.Interfaces
       void Unplug();
       void IncomingRequestFrom();
       bool ChangeRate(Rates rate);
+      void GetCallHistoryBy(HistoryFilter filter);
+
 
        event EventHandler<PhoneNumber> OutgoingConnection;
        event EventHandler EndCall;
@@ -27,6 +29,7 @@ namespace ATSProject.Interfaces
        event EventHandler UnPlugging;
        event EventHandler IncomingRequest;
        event EventHandler InitAnswer;
-
+       event EventHandler<HistoryFilter> RequestForHistory;
+       
     }
 }

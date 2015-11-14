@@ -32,6 +32,7 @@ namespace ATSProject.Classes
            obj.UnPlugging += this.UnPluggingHandler;
            obj.EndCall += this.EndCallHandler;
            obj.InitAnswer += this.AnswerHandler;
+           //obj.RequestForHistory
 
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
 
@@ -96,9 +97,6 @@ namespace ATSProject.Classes
            }
 
        }
-
-
-
        private void IncomingRequestFromHandler(object o,EventArgs e) {
            
            if (o is ITerminal)
@@ -114,7 +112,6 @@ namespace ATSProject.Classes
                }
            }
        }
-
        private void AnswerHandler(object o,EventArgs e) {
            if (o is ITerminal)
            {
@@ -144,11 +141,6 @@ namespace ATSProject.Classes
            this.GetPortByPhoneNumber(t.Number).State = PortState.UnPlugged;
            
        }
-
-
-
-
-
        public void EndCallHandler(object o,EventArgs p) {
            if (o is ITerminal)
            {
@@ -175,16 +167,19 @@ namespace ATSProject.Classes
                    Console.WriteLine("null");
            }
        }
-
-
        private void UpdateCallHistoryHandler(object sender,CallInfo information) {
            if (sender is IBillingSystem) {
                (sender as IBillingSystem).CallHistory.Add(information);
                this.connectionCollection.Remove(information);
            }
        }
-       
 
+
+       private void RequestForHistoryHandler(HistoryFilter filter) { 
+            
+
+
+       }
 
 
      

@@ -48,6 +48,7 @@
     <Compile Include="Classes\PortState.cs" />
     <Compile Include="Classes\Rates.cs" />
     <Compile Include="Classes\ScalingTime.cs" />
+    <Compile Include="Classes\HistoryFilter.cs" />
     <Compile Include="Classes\Station.cs" />
     <Compile Include="Classes\Terminal.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
