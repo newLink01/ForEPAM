@@ -1,4 +1,4 @@
 ﻿public enum TariffPlans { 
-        FirstPartExpensiveAfterFree,
+        TenExpensiveAfterFree,
         ConstMedium
 };

@@ -17,8 +17,8 @@ namespace ATSProject
 
             Station station = new Station(bilSys);
             station.SetNewTerminalAndPort(new PhoneNumber("11-11-11"), "Петя",TariffPlans.ConstMedium);
-            station.SetNewTerminalAndPort(new PhoneNumber("22-22-22"), "Витя",TariffPlans.FirstPartExpensiveAfterFree);
-            station.SetNewTerminalAndPort(new PhoneNumber("33-33-33"), "Жека",TariffPlans.FirstPartExpensiveAfterFree);
+            station.SetNewTerminalAndPort(new PhoneNumber("22-22-22"), "Витя",TariffPlans.TenExpensiveAfterFree);
+            station.SetNewTerminalAndPort(new PhoneNumber("33-33-33"), "Жека",TariffPlans.TenExpensiveAfterFree);
 
 
             
@@ -28,19 +28,24 @@ namespace ATSProject
 
 
             station[1].Call(new PhoneNumber("11-11-11"));
+           // station[2].Call(new PhoneNumber("11-11-11"));
+
             Thread.Sleep(5000);
             station[0].Drop();
 
             station[1].PayBill(bilSys);
-            Console.WriteLine( station[1].ChangeTariff(TariffPlans.ConstMedium));
+            station[1].ChangeTariff(TariffPlans.ConstMedium);
             Console.WriteLine();
+            Console.ReadKey();
 
-           /* station[1].Call(new PhoneNumber("33-33-33"));
+            station[1].Call(new PhoneNumber("33-33-33"));
+            Console.WriteLine("POINT");
             Thread.Sleep(1000);
+            //Console.ReadKey();
             station[2].Drop();
+            Console.ReadKey();
 
-
-            station[1].Call(new PhoneNumber("22-22-22"));
+           // station[1].Call(new PhoneNumber("22-22-22"));
 
 
             Console.WriteLine();
@@ -48,7 +53,7 @@ namespace ATSProject
        
 
             station[1].GetCallHistoryBy(HistoryFilter.CallDuration,bilSys);
-            */
+            
           
 
             

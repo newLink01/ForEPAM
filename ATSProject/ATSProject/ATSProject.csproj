@@ -47,7 +47,6 @@
     <Compile Include="Classes\Port.cs" />
     <Compile Include="Classes\PortState.cs" />
     <Compile Include="Classes\TariffPlans.cs" />
-    <Compile Include="Classes\ScalingTime.cs" />
     <Compile Include="Classes\HistoryFilter.cs" />
     <Compile Include="Classes\Station.cs" />
     <Compile Include="Classes\Terminal.cs" />

@@ -32,29 +32,43 @@ namespace ATSProject.Classes
           }
 
 
-        
+          Console.WriteLine("\n\t\tHistory by " + filter);
               foreach (var c in this.CallHistory.Where(x=>x.source.Number == terminal.Number).OrderBy(keySelector))
               {
 
                   Cost = 0;
+
                   if (c.CurrentTariffPlan == TariffPlans.ConstMedium)
                   {
-                      Cost = Math.Round(ScalingTime.ScalingTimeSpan(c.duration).TotalMinutes + 1) * 50;
+                      if (c.duration.TotalSeconds == 0) { Cost = 0; }
+                      else
+                      {
+                          Cost = Math.Round(c.duration.TotalSeconds + 1) * 50;
+                      }
                   }
 
 
-                  if (c.CurrentTariffPlan == TariffPlans.FirstPartExpensiveAfterFree)
+                  if (c.CurrentTariffPlan == TariffPlans.TenExpensiveAfterFree)
                   {
-                      Cost += (Math.Round(ScalingTime.ScalingTimeSpan(c.duration).TotalMinutes / 3 + 1)) * 80;
-                      Cost += (Math.Round(ScalingTime.ScalingTimeSpan(c.duration).TotalMinutes + 1) - (Math.Round(ScalingTime.ScalingTimeSpan(c.duration).TotalMinutes / 3 + 1))) * 20;
+                      if (c.duration.TotalSeconds == 0) { Cost = 0; }
+                      else
+                      {
+                          if (c.duration.TotalSeconds < 10)
+                          {
+                              Cost += Math.Round((c.duration.TotalSeconds + 1)) * 400;
+                          }
+                          else { Cost += 10 * 400; }
+                      }
                   }
 
 
                   Console.WriteLine("\n\nName : " + c.source.UserName +
                       " \nTarget abonent : " + c.target.UserName +
-                      "\nBegin call at : " + c.started + "\nDuration : " + ScalingTime.ScalingTimeSpan(c.duration) +
+                      "\nBegin call at : " + c.started + "\nDuration : " + c.duration +
                       "\nTariff plane : " + c.CurrentTariffPlan + 
-                      "\nCost : " + Cost
+                      "\nCost : " + Cost + 
+                      "\nPayed : " + c.Paid
+ 
                       );
                  // return;
               }
@@ -70,9 +84,8 @@ namespace ATSProject.Classes
       public bool PayBill(ITerminal terminal) {
 
           foreach (var c in this.CallHistory.Where(x => x.source.Number == terminal.Number)) {
-              if (c.Paid != true) {
+              if (c.Paid == false) {
                   c.Paid = true;
-
               }
           }
           return true;
