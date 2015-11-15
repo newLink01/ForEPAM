@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ATSProject.Interfaces;
 
-namespace ATSProject.Classes
+namespace ATSProject.Model
 {
    public class Port : IPort
     {

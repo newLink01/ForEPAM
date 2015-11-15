@@ -41,15 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\BillingSystem.cs" />
-    <Compile Include="Classes\CallInfo.cs" />
-    <Compile Include="Classes\PhoneNumber.cs" />
-    <Compile Include="Classes\Port.cs" />
-    <Compile Include="Classes\PortState.cs" />
-    <Compile Include="Classes\TariffPlans.cs" />
-    <Compile Include="Classes\HistoryFilter.cs" />
-    <Compile Include="Classes\Station.cs" />
-    <Compile Include="Classes\Terminal.cs" />
+    <Compile Include="Model\BillingSystem.cs" />
+    <Compile Include="Model\CallInfo.cs" />
+    <Compile Include="Model\PhoneNumber.cs" />
+    <Compile Include="Model\Port.cs" />
+    <Compile Include="Model\Enums\PortState.cs" />
+    <Compile Include="Model\Enums\TariffPlans.cs" />
+    <Compile Include="Model\Enums\HistoryFilter.cs" />
+    <Compile Include="Model\Station.cs" />
+    <Compile Include="Model\Terminal.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
     <Compile Include="Interfaces\IPort.cs" />
     <Compile Include="Interfaces\IShouldClearEvents.cs" />

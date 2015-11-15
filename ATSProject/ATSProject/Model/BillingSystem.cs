@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using ATSProject.Interfaces;
 using System.IO;
-using ATSProject.Interfaces;
 
-namespace ATSProject.Classes
+namespace ATSProject.Model
 {
   public class BillingSystem : IBillingSystem
     {
       private List<CallInfo> CallHistory { set; get; }
       private Func<CallInfo, object> keySelector;
-
+      private double Cost;
 
       public BillingSystem() {
           CallHistory = new List<CallInfo>();
@@ -22,7 +21,7 @@ namespace ATSProject.Classes
       {
 
           keySelector = null;
-          double Cost;
+           Cost = 0;
           switch (filter)
           {
               case HistoryFilter.AbonentName: keySelector = x => x.target.UserName; break;
@@ -53,7 +52,7 @@ namespace ATSProject.Classes
                       if (c.duration.TotalSeconds == 0) { Cost = 0; }
                       else
                       {
-                          if (c.duration.TotalSeconds < 10)
+                          if (c.duration.TotalSeconds < 6)
                           {
                               Cost += Math.Round((c.duration.TotalSeconds + 1)) * 400;
                           }
@@ -80,7 +79,6 @@ namespace ATSProject.Classes
               this.CallHistory.Add(information);
           }
       }
-
       public bool PayBill(ITerminal terminal) {
 
           foreach (var c in this.CallHistory.Where(x => x.source.Number == terminal.Number)) {

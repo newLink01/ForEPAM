@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ATSProject.Classes;
+using ATSProject.Model;
 using ATSProject.Interfaces;
 using System.Threading;
 
@@ -30,7 +30,7 @@ namespace ATSProject
             station[1].Call(new PhoneNumber("11-11-11"));
            // station[2].Call(new PhoneNumber("11-11-11"));
 
-            Thread.Sleep(5000);
+            Thread.Sleep(5500);
             station[0].Drop();
 
             station[1].PayBill(bilSys);
@@ -39,9 +39,7 @@ namespace ATSProject
             Console.ReadKey();
 
             station[1].Call(new PhoneNumber("33-33-33"));
-            Console.WriteLine("POINT");
-            Thread.Sleep(1000);
-            //Console.ReadKey();
+            Thread.Sleep(1500);
             station[2].Drop();
             Console.ReadKey();
 
@@ -52,13 +50,9 @@ namespace ATSProject
             Console.WriteLine();
        
 
-            station[1].GetCallHistoryBy(HistoryFilter.CallDuration,bilSys);
+            station[1].GetCallHistoryBy(HistoryFilter.AbonentName,bilSys);
             
-          
-
-            
-          
-
+ 
             Console.ReadKey();
         }
 
