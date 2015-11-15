@@ -8,10 +8,10 @@ namespace ATSProject.Interfaces
 {
   public interface ITerminal
     {
-      PhoneNumber Number { get;set; }
+      PhoneNumber Number { get; set; }
       string UserName { get; set; }
-      Rates CurrentRate { set; get; }
-      DateTime DateOfRateChange { set; get; }
+      TariffPlans CurrentRate { get;set; }
+      DateTime DateOfTariffChange { get; set; }
 
       void Call(PhoneNumber target);
       void Drop();
@@ -19,9 +19,8 @@ namespace ATSProject.Interfaces
       void Plug();
       void Unplug();
       void IncomingRequestFrom();
-      bool ChangeRate(Rates rate);
-      void GetCallHistoryBy(HistoryFilter filter);
-
+      bool ChangeRate(TariffPlans rate);
+      void GetCallHistoryBy(HistoryFilter filter,BillingSystem BS);
 
        event EventHandler<PhoneNumber> OutgoingConnection;
        event EventHandler EndCall;
@@ -29,7 +28,9 @@ namespace ATSProject.Interfaces
        event EventHandler UnPlugging;
        event EventHandler IncomingRequest;
        event EventHandler InitAnswer;
-       event EventHandler<HistoryFilter> RequestForHistoryBy;
+
        
+     
+
     }
 }

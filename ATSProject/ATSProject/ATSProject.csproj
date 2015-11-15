@@ -46,7 +46,7 @@
     <Compile Include="Classes\PhoneNumber.cs" />
     <Compile Include="Classes\Port.cs" />
     <Compile Include="Classes\PortState.cs" />
-    <Compile Include="Classes\Rates.cs" />
+    <Compile Include="Classes\TariffPlans.cs" />
     <Compile Include="Classes\ScalingTime.cs" />
     <Compile Include="Classes\HistoryFilter.cs" />
     <Compile Include="Classes\Station.cs" />

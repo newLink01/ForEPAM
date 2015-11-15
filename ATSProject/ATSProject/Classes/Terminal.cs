@@ -17,19 +17,18 @@ namespace ATSProject.Classes
        public event EventHandler UnPlugging;
        public event EventHandler IncomingRequest;
        public event EventHandler InitAnswer;
-       public event EventHandler<HistoryFilter> RequestForHistoryBy;
 
 
-       public string UserName { set;get; }
+       public string UserName {  set;get; }
        public PhoneNumber Number { set;get; }
-       public Rates CurrentRate { set; get; }
-       public DateTime DateOfRateChange { set; get; }
+       public TariffPlans CurrentRate { set; get; }
+       public DateTime DateOfTariffChange { set; get; }
 
-       public Terminal(PhoneNumber number,string name,Rates rate) {
+       public Terminal(PhoneNumber number,string name,TariffPlans rate) {
            this.Number = number;
            this.UserName = name;
            this.CurrentRate = rate;
-           this.DateOfRateChange = DateTime.Now;
+           this.DateOfTariffChange = DateTime.Now;
        }
 
  
@@ -59,6 +58,7 @@ namespace ATSProject.Classes
 
        }
 
+
        public void ClearAllEvents() {
            OutgoingConnection = null;
            EndCall = null;
@@ -66,12 +66,11 @@ namespace ATSProject.Classes
            UnPlugging = null;
            IncomingRequest = null;
            InitAnswer = null;
-           RequestForHistoryBy = null;
        }
 
-       public bool ChangeRate(Rates rate) {
+       public bool ChangeRate(TariffPlans rate) {
 
-           if (DateTime.Now >= (this.DateOfRateChange))
+           if (DateTime.Now > (this.DateOfTariffChange))
            {
                this.CurrentRate = rate;
                return true;
@@ -80,10 +79,8 @@ namespace ATSProject.Classes
        }
 
        
-       public void GetCallHistoryBy(HistoryFilter filter) {
-
-           this.OnRequestForHistoryBy(filter);
-
+       public void GetCallHistoryBy(HistoryFilter filter,BillingSystem BS) {
+           BS.RequestHistoryBy(this,filter);
        }
 
     
@@ -107,10 +104,7 @@ namespace ATSProject.Classes
        protected virtual void OnInitAnswer() {
            if (this.InitAnswer != null) { InitAnswer(this,null); }
        }
-       protected virtual void OnRequestForHistoryBy(HistoryFilter filter) {
-           if (this.RequestForHistoryBy != null) { this.RequestForHistoryBy(this,filter); } 
-
-       }
+     
 
 
 

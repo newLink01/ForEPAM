@@ -8,11 +8,6 @@ namespace ATSProject.Interfaces
 {
    public interface IBillingSystem
     {
-       List<CallInfo> CallHistory { set; get; }
-       void RequestHistoryHandler(HistoryFilter filter);
-
-     //  event EventHandler<HistoryFilter> RequestForGetHistory;
-
-
+       void RequestHistoryBy(ITerminal terminal,HistoryFilter filter);
     }
 }

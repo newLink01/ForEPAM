@@ -10,13 +10,16 @@ namespace ATSProject.Classes
    public class Station : IStation
     {
         private List<CallInfo> connectionCollection; 
-        public List<KeyValuePair<ITerminal, IPort>> mapping;
-        private event EventHandler<CallInfo> UpdateBillingSystem;
+        private List<KeyValuePair<ITerminal, IPort>> mapping;
+        public event EventHandler<CallInfo> UpdateBillingSystem;
 
         
        public Station(BillingSystem obj) {
 
-           this.UpdateBillingSystem += obj.UpdateBillingSystemHandler;
+           if (this.UpdateBillingSystem == null)
+           {
+               this.UpdateBillingSystem += obj.UpdateBillingSystemHandler;
+           }
            this.mapping = new List<KeyValuePair<ITerminal, IPort>>();
            this.connectionCollection = new List<CallInfo>();
        }
@@ -24,7 +27,7 @@ namespace ATSProject.Classes
 
 
 
-       public void SetNewTerminalAndPort(PhoneNumber number,string name,Rates rate) {
+       public void SetNewTerminalAndPort(PhoneNumber number,string name,TariffPlans rate) {
            ITerminal obj = new Terminal(number, name,rate);
 
            obj.OutgoingConnection += this.OutgoingConnectionHandler;
@@ -37,10 +40,7 @@ namespace ATSProject.Classes
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
 
            }
-
-
        private IPort GetPortByPhoneNumber(PhoneNumber obj) {
-
            return mapping.FirstOrDefault(x => x.Key.Number == obj).Value;
        }
        private ITerminal GetTerminalByPhoneNumber(PhoneNumber obj){
@@ -49,7 +49,9 @@ namespace ATSProject.Classes
           
        }
 
-
+       public ITerminal this[int index] {
+           get { return this.mapping[index].Key; }
+       }
 
 
 
@@ -77,7 +79,7 @@ namespace ATSProject.Classes
                        {
                            source = sender,
                            target = targetTerminal,
-                           CurrentRate = sender.CurrentRate
+                           CurrentTariffPlan = sender.CurrentRate
                        };
                        //
                        connectionCollection.Add(callInfo);
@@ -101,7 +103,7 @@ namespace ATSProject.Classes
            
            if (o is ITerminal)
            {
-               ITerminal obj = o as Terminal;
+               ITerminal obj = o as ITerminal;
                Console.WriteLine("Select action by " + obj.UserName + ": \n1)Answer \n2)Drop");
                string p = Console.ReadLine();
                switch (p)
@@ -115,7 +117,7 @@ namespace ATSProject.Classes
        private void AnswerHandler(object o,EventArgs e) {
            if (o is ITerminal)
            {
-               ITerminal t = o as Terminal;
+               ITerminal t = o as ITerminal;
                this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).Connected = true;
                this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).started = DateTime.Now;
                Console.WriteLine("Call accepted.");
@@ -130,7 +132,7 @@ namespace ATSProject.Classes
 
            if (o is ITerminal)
            {
-               ITerminal t = o as Terminal;
+               ITerminal t = o as ITerminal;
 
                if (this.GetPortByPhoneNumber(t.Number).State == PortState.Free) { Console.WriteLine("Already plugged."); }
                else this.GetPortByPhoneNumber(t.Number).State = PortState.Free;
@@ -168,6 +170,7 @@ namespace ATSProject.Classes
                    Console.WriteLine("null");
            }
        }
+
 
        protected void OnUpdateBillingSystem(CallInfo information) {
            if (this.UpdateBillingSystem != null) { this.UpdateBillingSystem(this,information); }
