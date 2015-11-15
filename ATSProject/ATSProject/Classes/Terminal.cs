@@ -21,14 +21,16 @@ namespace ATSProject.Classes
 
        public string UserName {  set;get; }
        public PhoneNumber Number { set;get; }
-       public TariffPlans CurrentRate { set; get; }
+       public TariffPlans CurrentTariff { set; get; }
        public DateTime DateOfTariffChange { set; get; }
+       public bool AllowChangeTariff { set; get; }
 
        public Terminal(PhoneNumber number,string name,TariffPlans rate) {
            this.Number = number;
            this.UserName = name;
-           this.CurrentRate = rate;
+           this.CurrentTariff = rate;
            this.DateOfTariffChange = DateTime.Now;
+           this.AllowChangeTariff = false;
        }
 
  
@@ -67,23 +69,26 @@ namespace ATSProject.Classes
            IncomingRequest = null;
            InitAnswer = null;
        }
+       public bool ChangeTariff(TariffPlans tariff) {
 
-       public bool ChangeRate(TariffPlans rate) {
-
-           if (DateTime.Now > (this.DateOfTariffChange))
+           if (this.AllowChangeTariff == true && this.CurrentTariff!=tariff)
            {
-               this.CurrentRate = rate;
+               this.CurrentTariff = tariff;
                return true;
            }
            return false;
-       }
-
-       
+       }     
        public void GetCallHistoryBy(HistoryFilter filter,BillingSystem BS) {
            BS.RequestHistoryBy(this,filter);
        }
 
-    
+       public bool PayBill(BillingSystem BS) {
+           this.AllowChangeTariff = true;
+           return BS.PayBill(this);
+
+        }
+
+
        protected virtual void OnOutgoingConnection(PhoneNumber e) {
            if (this.OutgoingConnection != null) { OutgoingConnection(this,e); }
        }

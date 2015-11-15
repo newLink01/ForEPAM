@@ -31,12 +31,16 @@ namespace ATSProject
             Thread.Sleep(5000);
             station[0].Drop();
 
-            station[1].ChangeRate(TariffPlans.ConstMedium);
+            station[1].PayBill(bilSys);
+            Console.WriteLine( station[1].ChangeTariff(TariffPlans.ConstMedium));
             Console.WriteLine();
 
-            station[1].Call(new PhoneNumber("33-33-33"));
+           /* station[1].Call(new PhoneNumber("33-33-33"));
             Thread.Sleep(1000);
             station[2].Drop();
+
+
+            station[1].Call(new PhoneNumber("22-22-22"));
 
 
             Console.WriteLine();
@@ -44,7 +48,7 @@ namespace ATSProject
        
 
             station[1].GetCallHistoryBy(HistoryFilter.CallDuration,bilSys);
-
+            */
           
 
             

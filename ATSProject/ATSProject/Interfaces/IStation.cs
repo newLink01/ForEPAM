@@ -10,7 +10,8 @@ namespace ATSProject.Interfaces
    public interface IStation
     {
        event EventHandler<CallInfo> UpdateBillingSystem;
-       IPort GetPortByPhoneNumber(PhoneNumber obj);
-       ITerminal GetTerminalByPhoneNumber(PhoneNumber obj);
+       void SetNewTerminalAndPort(PhoneNumber number, string name, TariffPlans tariff);
+
+
     }
 }

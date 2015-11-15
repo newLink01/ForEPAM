@@ -9,5 +9,6 @@ namespace ATSProject.Interfaces
    public interface IBillingSystem
     {
        void RequestHistoryBy(ITerminal terminal,HistoryFilter filter);
+       bool PayBill(ITerminal terminal);
     }
 }

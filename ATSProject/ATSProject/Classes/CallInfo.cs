@@ -14,5 +14,6 @@ namespace ATSProject.Classes
      public TimeSpan duration;
      public TariffPlans CurrentTariffPlan;
      public bool Connected;
+     public bool Paid;
     }
 }

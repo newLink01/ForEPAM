@@ -27,8 +27,8 @@ namespace ATSProject.Classes
 
 
 
-       public void SetNewTerminalAndPort(PhoneNumber number,string name,TariffPlans rate) {
-           ITerminal obj = new Terminal(number, name,rate);
+       public void SetNewTerminalAndPort(PhoneNumber number,string name,TariffPlans tariff) {
+           ITerminal obj = new Terminal(number, name,tariff);
 
            obj.OutgoingConnection += this.OutgoingConnectionHandler;
            obj.IncomingRequest += this.IncomingRequestFromHandler;
@@ -36,6 +36,7 @@ namespace ATSProject.Classes
            obj.UnPlugging += this.UnPluggingHandler;
            obj.EndCall += this.EndCallHandler;
            obj.InitAnswer += this.AnswerHandler;
+           obj.AllowChangeTariff = false;
 
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
 
@@ -79,7 +80,7 @@ namespace ATSProject.Classes
                        {
                            source = sender,
                            target = targetTerminal,
-                           CurrentTariffPlan = sender.CurrentRate
+                           CurrentTariffPlan = sender.CurrentTariff
                        };
                        //
                        connectionCollection.Add(callInfo);
@@ -117,10 +118,20 @@ namespace ATSProject.Classes
        private void AnswerHandler(object o,EventArgs e) {
            if (o is ITerminal)
            {
-               ITerminal t = o as ITerminal;
-               this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).Connected = true;
-               this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number).started = DateTime.Now;
-               Console.WriteLine("Call accepted.");
+               try
+               {
+                   ITerminal t = o as ITerminal;
+                   var info = this.connectionCollection.FirstOrDefault(x => x.target.Number == t.Number);
+                   
+                   info.Connected = true;
+                   info.started = DateTime.Now;
+                   info.Paid = false;
+                   Console.WriteLine("Call accepted.");
+               }
+               catch (NullReferenceException ex) {
+                   Console.WriteLine("Call is fall.");
+               }
+                   
            }
        }
        public void ShowTerminalsAndPorts() {

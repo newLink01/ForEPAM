@@ -10,8 +10,9 @@ namespace ATSProject.Interfaces
     {
       PhoneNumber Number { get; set; }
       string UserName { get; set; }
-      TariffPlans CurrentRate { get;set; }
+      TariffPlans CurrentTariff { get;set; }
       DateTime DateOfTariffChange { get; set; }
+      bool AllowChangeTariff { set; get; }
 
       void Call(PhoneNumber target);
       void Drop();
@@ -19,8 +20,10 @@ namespace ATSProject.Interfaces
       void Plug();
       void Unplug();
       void IncomingRequestFrom();
-      bool ChangeRate(TariffPlans rate);
+      bool ChangeTariff(TariffPlans rate);
       void GetCallHistoryBy(HistoryFilter filter,BillingSystem BS);
+      bool PayBill(BillingSystem BS);
+
 
        event EventHandler<PhoneNumber> OutgoingConnection;
        event EventHandler EndCall;

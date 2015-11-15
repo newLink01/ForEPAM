@@ -18,9 +18,6 @@ namespace ATSProject.Classes
       public BillingSystem() {
           CallHistory = new List<CallInfo>();
       }
-
-
-
       public void RequestHistoryBy(ITerminal terminal, HistoryFilter filter)
       {
 
@@ -36,9 +33,8 @@ namespace ATSProject.Classes
 
 
         
-              foreach (var c in this.CallHistory.Where(x=>x.source.Number.Value == terminal.Number.Value).OrderBy(keySelector))
+              foreach (var c in this.CallHistory.Where(x=>x.source.Number == terminal.Number).OrderBy(keySelector))
               {
-                  Console.WriteLine("in foreach");
 
                   Cost = 0;
                   if (c.CurrentTariffPlan == TariffPlans.ConstMedium)
@@ -64,14 +60,6 @@ namespace ATSProject.Classes
               }
               //Console.WriteLine("Such information dont exist."); return;
           }
-      
-      
-
-
-      
-
-
-
       public void UpdateBillingSystemHandler(object sender,CallInfo information) {
           if (information != null)
           {
@@ -79,6 +67,16 @@ namespace ATSProject.Classes
           }
       }
 
+      public bool PayBill(ITerminal terminal) {
+
+          foreach (var c in this.CallHistory.Where(x => x.source.Number == terminal.Number)) {
+              if (c.Paid != true) {
+                  c.Paid = true;
+
+              }
+          }
+          return true;
+      }
 
 
 
