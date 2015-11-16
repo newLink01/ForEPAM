@@ -32,11 +32,7 @@ namespace ATSProject.Model
 
 
           Console.WriteLine("\n\t\tHistory by " + filter);
-
-          if (this.CallHistory.Where(x => x.source.Number == terminal.Number).OrderBy(keySelector) == null) {
-              Console.WriteLine("No information."); return;
-          }
-          
+  
               foreach (var c in this.CallHistory.Where(x=>x.source.Number == terminal.Number).OrderBy(keySelector))
               {
                   Cost = 0;
