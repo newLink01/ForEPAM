@@ -32,9 +32,13 @@ namespace ATSProject.Model
 
 
           Console.WriteLine("\n\t\tHistory by " + filter);
+
+          if (this.CallHistory.Where(x => x.source.Number == terminal.Number).OrderBy(keySelector) == null) {
+              Console.WriteLine("No information."); return;
+          }
+          
               foreach (var c in this.CallHistory.Where(x=>x.source.Number == terminal.Number).OrderBy(keySelector))
               {
-
                   Cost = 0;
 
                   if (c.CurrentTariffPlan == TariffPlans.ConstMedium)
@@ -42,21 +46,21 @@ namespace ATSProject.Model
                       if (c.duration.TotalSeconds == 0) { Cost = 0; }
                       else
                       {
-                          Cost = Math.Round(c.duration.TotalSeconds + 1) * 50;
+                          Cost = Math.Round(c.duration.TotalSeconds + 1) * 100;
                       }
                   }
 
 
-                  if (c.CurrentTariffPlan == TariffPlans.TenExpensiveAfterFree)
+                  if (c.CurrentTariffPlan == TariffPlans.FirstPartExpensiveAfterFree)
                   {
                       if (c.duration.TotalSeconds == 0) { Cost = 0; }
                       else
                       {
-                          if (c.duration.TotalSeconds < 6)
+                          if (c.duration.TotalSeconds < 5)
                           {
                               Cost += Math.Round((c.duration.TotalSeconds + 1)) * 400;
                           }
-                          else { Cost += 10 * 400; }
+                          else { Cost += 5 * 400; }
                       }
                   }
 
@@ -67,12 +71,13 @@ namespace ATSProject.Model
                       "\nTariff plane : " + c.CurrentTariffPlan + 
                       "\nCost : " + Cost + 
                       "\nPayed : " + c.Paid
- 
                       );
-                 // return;
+
               }
               //Console.WriteLine("Such information dont exist."); return;
           }
+
+
       public void UpdateBillingSystemHandler(object sender,CallInfo information) {
           if (information != null)
           {
