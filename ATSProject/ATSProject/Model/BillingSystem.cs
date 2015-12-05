@@ -42,7 +42,7 @@ namespace ATSProject.Model
                       if (c.duration.TotalSeconds == 0) { Cost = 0; }
                       else
                       {
-                          Cost = Math.Round(c.duration.TotalSeconds + 1) * 100;
+                          Cost = Math.Round(c.duration.TotalSeconds) * 100;
                       }
                   }
 
@@ -70,7 +70,6 @@ namespace ATSProject.Model
                       );
 
               }
-              //Console.WriteLine("Such information dont exist."); return;
           }
 
 

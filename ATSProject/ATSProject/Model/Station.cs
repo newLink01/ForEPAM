@@ -37,6 +37,7 @@ namespace ATSProject.Model
            obj.EndCall += this.EndCallHandler;
            obj.InitAnswer += this.AnswerHandler;
            obj.AllowChangeTariff = false;
+          
 
            mapping.Add(new KeyValuePair<ITerminal,IPort>(obj,new Port()));
 
@@ -59,47 +60,55 @@ namespace ATSProject.Model
 
        private void OutgoingConnectionHandler(object t,PhoneNumber targetPhone) {
 
-           if (t is ITerminal)
+           try
            {
-               ITerminal sender = t as ITerminal;
-
-               if (this.GetPortByPhoneNumber(sender.Number).State == PortState.Free)
+               if (t is ITerminal)
                {
-                   GetPortByPhoneNumber(sender.Number).State = PortState.Busy;
+                   ITerminal sender = t as ITerminal;
 
-                   ITerminal targetTerminal = this.GetTerminalByPhoneNumber(targetPhone);
-                   IPort targetPort = this.GetPortByPhoneNumber(targetPhone);
-
-                   Console.WriteLine("\nCalling from " + sender.UserName + " to " + targetTerminal.UserName);
-
-                   if (targetPort.State == PortState.Free)
+                   if (this.GetPortByPhoneNumber(sender.Number).State == PortState.Free)
                    {
-                       targetPort.State = PortState.Busy;
-                       Console.WriteLine();
-                       var callInfo = new CallInfo()
+                       GetPortByPhoneNumber(sender.Number).State = PortState.Busy;
+
+                       ITerminal targetTerminal = this.GetTerminalByPhoneNumber(targetPhone);
+                       IPort targetPort = this.GetPortByPhoneNumber(targetPhone);
+
+                       Console.WriteLine("\nCalling from " + sender.UserName + " to " + targetTerminal.UserName);
+
+                       if (targetPort.State == PortState.Free)
                        {
-                           source = sender,
-                           target = targetTerminal,
-                           CurrentTariffPlan = sender.CurrentTariff
-                       };
-                       //
-                       connectionCollection.Add(callInfo);
-                       targetTerminal.IncomingRequestFrom();
-                       //
+                           targetPort.State = PortState.Busy;
+                           Console.WriteLine();
+                           var callInfo = new CallInfo()
+                           {
+                               source = sender,
+                               target = targetTerminal,
+                               CurrentTariffPlan = sender.CurrentTariff
+                           };
+                           //
+                           connectionCollection.Add(callInfo);
+                           targetTerminal.IncomingRequestFrom();
+                           //
+                       }
+                       else
+                       {
+                           Console.WriteLine("Cannot connect to target port.");
+                       }
+
+
                    }
                    else
                    {
-                       Console.WriteLine("Cannot connect to target port.");
+                       Console.WriteLine("Cant connect to your port.Check port settings.");
                    }
 
                }
-               else
-               {
-                   Console.WriteLine("Cant connect to your port.Check port settings.");
-               }
            }
+           catch (NullReferenceException ex) { Console.WriteLine("Cannot connect"); }
 
        }
+
+
        private void IncomingRequestFromHandler(object o,EventArgs e) {
            
            if (o is ITerminal)
