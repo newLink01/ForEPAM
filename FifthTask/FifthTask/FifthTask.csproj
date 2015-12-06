@@ -39,10 +39,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -108,6 +118,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Entities\Account.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\Manager.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\Product.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\Role.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\Sale.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\TradeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\TradeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\TradeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Repositories\AccountRepository.cs" />
+    <Compile Include="DAL\Repositories\IRepository.cs" />
+    <Compile Include="DAL\Repositories\ManagerRepository.cs" />
+    <Compile Include="DAL\Repositories\ProductRepository.cs" />
+    <Compile Include="DAL\Repositories\RoleRepository.cs" />
+    <Compile Include="DAL\Repositories\SalesRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -133,11 +179,34 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="DAL\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DAL\Entities\TradeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TradeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Entities\TradeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+      <LastGenOutput>TradeModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL\Entities\TradeModel.edmx.diagram">
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\Entities\TradeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+      <LastGenOutput>TradeModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
