@@ -178,6 +178,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BL\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
