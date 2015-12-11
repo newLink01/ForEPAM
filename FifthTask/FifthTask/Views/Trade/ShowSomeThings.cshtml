@@ -1,0 +1,18 @@
+﻿
+
+
+ <div>
+        <table>
+            @foreach (var sale in ViewBag.SaleCollection)
+            {
+                <tr class="paginate">
+                    <td>@sale.Manager</td>
+                    <td>@sale.Product</td>
+                    <td>@sale.AmountForSale</td> 
+                </tr>
+            }
+        </table>
+        <div id="page-nav"></div>
+
+
+    </div>

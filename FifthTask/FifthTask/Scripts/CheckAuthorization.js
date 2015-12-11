@@ -1,0 +1,3 @@
+﻿function CheckAuthorization() {
+    document.getElementById('');
+}
