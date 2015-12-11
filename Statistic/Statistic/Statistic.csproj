@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BC04D566-9FFC-43CF-AB48-5CABE1DF854B}</ProjectGuid>
+    <ProjectGuid>{FC1E9B2D-ADAC-4F2F-AF9F-339CEBFC058D}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FifthTask</RootNamespace>
-    <AssemblyName>FifthTask</AssemblyName>
+    <RootNamespace>Statistic</RootNamespace>
+    <AssemblyName>Statistic</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -39,20 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -118,42 +108,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Entities\Account.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\Manager.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\Product.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\Role.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\Sale.cs">
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\TradeModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TradeModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\TradeModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TradeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Entities\TradeModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\Repositories\AccountRepository.cs" />
-    <Compile Include="DAL\Repositories\IRepository.cs" />
-    <Compile Include="DAL\Repositories\ManagerRepository.cs" />
-    <Compile Include="DAL\Repositories\ProductRepository.cs" />
-    <Compile Include="DAL\Repositories\RoleRepository.cs" />
-    <Compile Include="DAL\Repositories\SalesRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,10 +117,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="App_Data\TradeDB.mdf" />
-    <Content Include="App_Data\TradeDB_log.ldf">
-      <DependentUpon>TradeDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -178,36 +128,12 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BL\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="DAL\Entities\TradeModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TradeModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\Entities\TradeModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-      <LastGenOutput>TradeModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL\Entities\TradeModel.edmx.diagram">
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DAL\Entities\TradeModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TradeModel.edmx</DependentUpon>
-      <LastGenOutput>TradeModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -225,9 +151,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4182</DevelopmentServerPort>
+          <DevelopmentServerPort>9998</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4182/</IISUrl>
+          <IISUrl>http://localhost:9998/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
