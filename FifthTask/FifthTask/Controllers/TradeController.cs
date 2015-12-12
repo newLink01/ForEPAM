@@ -62,17 +62,23 @@ namespace FifthTask.Controllers
         }
 
 
+
         public ActionResult ShowManagers() {
             ViewBag.ManagerCollection = managerRep.GetAll();
             return View();
         }
-
         public ActionResult ShowProducts() {
 
             ViewBag.ProductCollection = productRep.GetAll();
 
             return View();
         }
+        public ActionResult ShowSales() {
+
+
+            ViewBag.SaleCollection = saleRep.GetAll();
+            return View();
+}
 
 
     }
