@@ -116,11 +116,11 @@ namespace FifthTask.Controllers
                 productRep.GetElement(sale.ProductId).TotalNumber -= sale.AmountForSale;
                 this.saleRep.Create(new Sale()
                 {
-                    AmountForSale = sale.AmountForSale,
-                    CostPerUnit = sale.CostPerUnit,
-                    DateOfSale = sale.DateOfSale,
                     Manager = sale.ManagerId,
                     Product = sale.ProductId,
+                    AmountForSale = sale.AmountForSale,
+                    CostPerUnit = sale.CostPerUnit,
+                    DateOfSale = DateTime.Now,
                 });
 
                 this.productRep.Save();

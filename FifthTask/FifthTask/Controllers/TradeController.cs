@@ -70,6 +70,7 @@ namespace FifthTask.Controllers
             foreach (var sale in this.saleRep.GetAll()) {
                 formattedSale = new FormattedSale();
                 formattedSale.SaleId = sale.SaleId;
+                formattedSale.ManagerId = managerRep.GetElement(sale.Manager).ManagerId;
                 formattedSale.ManagerName = managerRep.GetElement(sale.Manager).Name;
                 formattedSale.ManagerSername = managerRep.GetElement(sale.Manager).Sername;
                 formattedSale.ProductId = productRep.GetElement(sale.Product).ProductId;
