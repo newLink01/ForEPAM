@@ -61,8 +61,29 @@ namespace FifthTask.Controllers
             return View();
         }
 
+        private IEnumerable<FormattedSale> FormatSales() {
 
+            List<FormattedSale> FormattedSalesCollection = new List<FormattedSale>();
 
+            FormattedSale formattedSale;
+
+            foreach (var sale in this.saleRep.GetAll()) {
+                formattedSale = new FormattedSale();
+                formattedSale.SaleId = sale.SaleId;
+                formattedSale.ManagerName = managerRep.GetElement(sale.Manager).Name;
+                formattedSale.ManagerSername = managerRep.GetElement(sale.Manager).Sername;
+                formattedSale.ProductId = productRep.GetElement(sale.Product).ProductId;
+                formattedSale.ProductName = productRep.GetElement(sale.Product).Name;
+                formattedSale.AmountForSale = sale.AmountForSale;
+                formattedSale.CostPerUnit = sale.CostPerUnit;
+                formattedSale.DateOfSale = sale.DateOfSale;
+
+                FormattedSalesCollection.Add(formattedSale);
+            }
+
+            return FormattedSalesCollection;
+        }
+        
         public ActionResult ShowManagers() {
             ViewBag.ManagerCollection = managerRep.GetAll();
             return View();
@@ -73,10 +94,10 @@ namespace FifthTask.Controllers
 
             return View();
         }
+
         public ActionResult ShowSales() {
 
-
-            ViewBag.SaleCollection = saleRep.GetAll();
+            ViewBag.SaleCollection = this.FormatSales();
             return View();
 }
 

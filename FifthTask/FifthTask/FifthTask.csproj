@@ -237,7 +237,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ForDropByIdModel.cs" />
     <Compile Include="Models\FormattedSale.cs" />
+    <Compile Include="Models\ManagerModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\SaleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +406,12 @@
     <Content Include="Views\Trade\ShowManagers.cshtml" />
     <Content Include="Views\Trade\ShowProducts.cshtml" />
     <Content Include="Views\Trade\ShowSales.cshtml" />
+    <Content Include="Views\EditByAdmin\AddManager.cshtml" />
+    <Content Include="Views\EditByAdmin\RemoveManager.cshtml" />
+    <Content Include="Views\EditByAdmin\AddProduct.cshtml" />
+    <Content Include="Views\EditByAdmin\RemoveProduct.cshtml" />
+    <Content Include="Views\EditByAdmin\AddSale.cshtml" />
+    <Content Include="Views\EditByAdmin\RemoveSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

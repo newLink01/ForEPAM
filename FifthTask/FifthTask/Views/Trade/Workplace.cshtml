@@ -7,22 +7,5 @@
     @Html.ActionLink("Edit roles", "../EditByAdmin/EditRoles")
     @Html.ActionLink("Show managers","ShowManagers")
     @Html.ActionLink("Show products", "ShowProducts")
+    @Html.ActionLink("Show sales","ShowSales")
 </div>
-<br><br><br>
-<div class="dark-theme">
-      
-        <table class="table">
-            @foreach (var sale in ViewBag.SaleCollection)
-            {
-                <tr class="paginate">
-                    <td>@sale.Manager</td>
-                    <td>@sale.Product</td>
-                    <td>@sale.AmountForSale</td> 
-                </tr>
-            }
-        </table>
-     <br>
-        <div id="page-nav"></div>
-
-
-    </div>

@@ -3,19 +3,27 @@
     <table class="table table-striped">
         <tr style="font:bold;font-size:large;">
             <td>Sale Id</td>
-            <td>Manager </td>
-            <td>Product</td>
+            <td>Manager Id</td>
+            <td>Name</td>
+            <td>Sername</td>
+            <td>Product Id</td>
+            <td>Product name</td>
+            <td>Amount for sale</td>
             <td>Cost per unit</td>
-            <td>Sale date</td>
+            <td>Date of sale</td>
         </tr>
-        @foreach (var product in ViewBag.ProductCollection)
+        @foreach (var sale in ViewBag.SaleCollection)
         {
             <tr class="paginate">
-                <td>@product.ProductId</td>
-                <td>@product.Name</td>
-                <td>@product.TotalNumber</td>
-                <td>@product.CostPerUnit</td>
-                <td>@product.Description</td>
+                <td>@sale.SaleId</td>
+                <td>@sale.ManagerId</td>
+                <td>@sale.ManagerName</td>
+                <td>@sale.ManagerSername</td>
+                <td>@sale.ProductId</td>
+                <td>@sale.ProductName</td>
+                <td>@sale.AmountForSale</td>
+                <td>@sale.CostPerUnit</td>
+                <td>@sale.DateOfSale</td>
             </tr>
         }
     </table>

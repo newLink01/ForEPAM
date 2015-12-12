@@ -1,0 +1,26 @@
+﻿<div>
+
+    <table class="table table-striped">
+        <tr style="font:bold;font-size:large;">
+            <td>Product Id</td>
+            <td>Name</td>
+            <td>Total number</td>
+            <td>Cost per unit</td>
+            <td>Desctiption</td>
+        </tr>
+        @foreach (var product in ViewBag.ProductCollection)
+        {
+            <tr class="paginate">
+                <td>@product.ProductId</td>
+                <td>@product.Name</td>
+                <td>@product.TotalNumber</td>
+                <td>@product.CostPerUnit</td>
+                <td>@product.Description</td>
+            </tr>
+        }
+    </table>
+    <br>
+    <div id="page-nav"></div>
+
+
+</div>
