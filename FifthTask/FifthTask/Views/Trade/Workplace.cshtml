@@ -1,0 +1,28 @@
+﻿@using System.Web.Mvc.Html
+
+
+
+<div >
+    @Html.ActionLink("Edit records", "../EditByAdmin/EditRecords")
+    @Html.ActionLink("Edit roles", "../EditByAdmin/EditRoles")
+    @Html.ActionLink("Show managers","ShowManagers")
+
+</div>
+<br><br><br>
+<div class="dark-theme">
+      
+        <table class="table">
+            @foreach (var sale in ViewBag.SaleCollection)
+            {
+                <tr class="paginate">
+                    <td>@sale.Manager</td>
+                    <td>@sale.Product</td>
+                    <td>@sale.AmountForSale</td> 
+                </tr>
+            }
+        </table>
+     <br>
+        <div id="page-nav"></div>
+
+
+    </div>

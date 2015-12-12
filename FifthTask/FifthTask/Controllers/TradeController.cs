@@ -32,24 +32,48 @@ namespace FifthTask.Controllers
                 {
                     if(manager.ManagerId == sale.Manager)
                 }
-
-
             }
 
         }*/
 
 
-
-
-
-
-        public ActionResult ShowSomeThings()
+        [HttpGet]
+        public ActionResult Workplace()
         {
             
             ViewBag.SaleCollection = saleRep.GetAll();
-            ViewBag.TotalSaleRecords = saleRep.GetAll().Count();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Workplace(string filter) {
+
+            ViewBag.SaleCollection = saleRep.GetAll();
+           
+                ViewBag.filter = filter;
+            
+            
+            return View();
+        }
+
+        public ActionResult EditRecords() {
+
+            return View();
+        }
+
+
+        public ActionResult ShowManagers() {
+            ViewBag.ManagerCollection = managerRep.GetAll();
+            return View();
+        }
+
+        public ActionResult ShowProducts() {
+
+            ViewBag.ProductCollection = productRep.GetAll();
+
+            return View();
+        }
+
 
     }
 }
