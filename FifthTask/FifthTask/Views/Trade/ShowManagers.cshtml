@@ -1,0 +1,22 @@
+﻿<div class="dark-theme">
+
+    <table class="table table-bordered">
+        <tr>
+            <td>Manager Id</td>
+            <td>Name</td>
+            <td>Sername</td>
+            </tr>
+        @foreach (var manager in ViewBag.ManagerCollection)
+        {
+            <tr class="paginate">
+                <td>@manager.ManagerId</td>
+                <td>@manager.Name</td>
+                <td>@manager.Sername</td>
+            </tr>
+        }
+    </table>
+    <br>
+    <div id="page-nav"></div>
+
+
+</div>
