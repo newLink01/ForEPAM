@@ -79,6 +79,7 @@ namespace FifthTask.Controllers
                 formattedSale.CostPerUnit = sale.CostPerUnit;
                 formattedSale.DateOfSale = sale.DateOfSale;
 
+
                 FormattedSalesCollection.Add(formattedSale);
             }
 
