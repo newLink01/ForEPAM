@@ -15,7 +15,9 @@ namespace FifthTask.Controllers
         private SaleRepository saleRep;
         private ManagerRepository managerRep;
         private ProductRepository productRep;
-        IEnumerable<FormattedSale> formattedSales;
+        private IEnumerable<FormattedSale> formattedSales;
+        
+
         public TradeController() {
             this.saleRep = new SaleRepository();
             this.managerRep = new ManagerRepository();
@@ -97,11 +99,22 @@ namespace FifthTask.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult ShowSales() {
-
+            
             ViewBag.SaleCollection = this.FormatSales();
             return View();
 }
+        [HttpPost]
+        public ActionResult ShowSales(SelectedFilterModel filter) {
+            ViewBag.SaleCollection = this.FormatSales();
+            if (ModelState.IsValid) {
+                ViewBag.result = filter.SelectedFilter;
+            }
+            
+            
+            return View();
+        }
 
 
     }

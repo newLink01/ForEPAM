@@ -1,6 +1,42 @@
-﻿<div>
+﻿@model FifthTask.Models.SelectedFilterModel
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+         {
+             Text = "Manager",
+             Value = "Manager",
+             Selected = true
+         });
+    listItems.Add(new SelectListItem
+         {
+             Text = "DateNax",
+             Value = "Date"
+         });
+    listItems.Add(new SelectListItem
+         {
+             Text = "Product",
+             Value = "Product"
+         });
+}
+<div>
+    @using (@Html.BeginForm())
+    {
+        <fieldset class ="list-group-item-text">
+            Select filter
+            @Html.DropDownListFor(fitler=>fitler.SelectedFilter, listItems)   
+            <p>
+                <input type="submit" value="Select" class="btn btn-default" style="font-size:medium;" />
+            </p>
 
-    <table class="table table-striped">
+        </fieldset>
+
+    }
+</div>
+
+@ViewBag.result
+
+<div id="SaleTable">
+    <table class="table table-striped" style="border:medium">
         <tr style="font:bold;font-size:large;">
             <td>Sale Id</td>
             <td>Manager Id</td>
@@ -29,6 +65,5 @@
     </table>
     <br>
     <div id="page-nav"></div>
-
-
 </div>
+

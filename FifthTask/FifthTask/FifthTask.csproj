@@ -229,9 +229,9 @@
       <DependentUpon>Trade.edmx</DependentUpon>
     </Compile>
     <Compile Include="DAL\Repositories\IRepository.cs" />
-    <Compile Include="DAL\Repositories\ManagerRepository.cs" />
-    <Compile Include="DAL\Repositories\ProductRepository.cs" />
-    <Compile Include="DAL\Repositories\SaleRepository.cs" />
+    <Compile Include="DAL\Repositories\TradeRepositories\ManagerRepository.cs" />
+    <Compile Include="DAL\Repositories\TradeRepositories\ProductRepository.cs" />
+    <Compile Include="DAL\Repositories\TradeRepositories\SaleRepository.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -242,6 +242,7 @@
     <Compile Include="Models\ManagerModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SaleModel.cs" />
+    <Compile Include="Models\SelectedFilterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +420,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
