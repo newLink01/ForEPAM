@@ -1,5 +1,8 @@
 ﻿@model FifthTask.Models.SaleModel
 
+<button class="btn btn-default" onclick="GoToUrlBlank('../Trade/ShowManagers')">Show managers</button>
+<button class="btn btn-default" onclick="GoToUrlBlank('../Trade/ShowProducts')">Show products</button>
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
