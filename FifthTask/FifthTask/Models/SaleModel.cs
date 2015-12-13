@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Media;
 namespace FifthTask.Models
 {
     public class SaleModel
@@ -16,6 +17,8 @@ namespace FifthTask.Models
         [Required]
         public double CostPerUnit { set; get; }
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateOfSale { set; get; }
     }
 }

@@ -9,7 +9,7 @@
          });
     listItems.Add(new SelectListItem
          {
-             Text = "DateNax",
+             Text = "Date",
              Value = "Date"
          });
     listItems.Add(new SelectListItem
@@ -23,9 +23,9 @@
     {
         <fieldset class ="list-group-item-text">
             Select filter
-            @Html.DropDownListFor(fitler=>fitler.SelectedFilter, listItems)   
+            @Html.DropDownListFor(fitler=>fitler.SelectedFilter,listItems)   
             <p>
-                <input type="submit" value="Select" class="btn btn-default" style="font-size:medium;" />
+                <input type="submit" value="Sort" class="btn btn-default" style="font-size:medium;" />
             </p>
 
         </fieldset>

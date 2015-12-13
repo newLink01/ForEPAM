@@ -38,6 +38,23 @@ namespace FifthTask.Controllers
 
         }*/
 
+        private IEnumerable<FormattedSale> SortedSale(string filter) {
+            List<FormattedSale> BeforeSort = this.FormatSales().ToList();
+
+            switch (filter) {
+                case "Manager": {
+                    return BeforeSort.OrderBy(x=>x.ManagerName);
+                }
+                case "Date": {
+                    return BeforeSort.OrderBy(x => x.DateOfSale);  
+                }
+                case "Product": {
+                    return BeforeSort.OrderBy(x => x.ProductName);
+                }
+                default: return null; 
+            }
+
+        }
 
         [HttpGet]
         public ActionResult Workplace()
@@ -88,6 +105,7 @@ namespace FifthTask.Controllers
             return FormattedSalesCollection;
         }
         
+
         public ActionResult ShowManagers() {
             ViewBag.ManagerCollection = managerRep.GetAll();
             return View();
@@ -107,13 +125,8 @@ namespace FifthTask.Controllers
 }
         [HttpPost]
         public ActionResult ShowSales(SelectedFilterModel filter) {
-            ViewBag.SaleCollection = this.FormatSales();
-            if (ModelState.IsValid) {
-                ViewBag.result = filter.SelectedFilter;
-            }
-            
-            
-            return View();
+                ViewBag.SaleCollection = this.SortedSale(filter.SelectedFilter);
+                return View();
         }
 
 

@@ -144,6 +144,15 @@ namespace FifthTask.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult EditProduct() {
+            return View();
+        }
+
+
+
+
+
 
         [HttpGet]
         public ActionResult AddRole() { 
