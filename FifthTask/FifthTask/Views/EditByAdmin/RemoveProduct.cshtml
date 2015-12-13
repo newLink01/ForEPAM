@@ -1,5 +1,7 @@
 ﻿@model FifthTask.Models.ForDropByIdModel
 
+<button class="btn btn-default" onclick="GoToUrlBlank('../Trade/ShowProducts')">Show products</button>
+<br>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -24,6 +26,3 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "EditRecords")
-</div>

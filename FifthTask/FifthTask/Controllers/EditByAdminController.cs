@@ -28,9 +28,7 @@ namespace FifthTask.Controllers
             return View();
         }
 
-        public ActionResult EditRoles() {
-            return View();
-        }
+        
 
 
         [HttpGet]
@@ -44,7 +42,7 @@ namespace FifthTask.Controllers
             {
                 managerRep.Create(new Manager() { Name = manager.ManagerName, Sername = manager.ManagerSername});
                 managerRep.Save();
-                return View("EditRecords");
+                return View();
             }
             return View();
         }
@@ -59,7 +57,7 @@ namespace FifthTask.Controllers
             {
                 managerRep.Delete(info.ElementId);
                 managerRep.Save();
-                return View("EditRecords");
+                return View();
             }
             return View();
         }
@@ -78,7 +76,7 @@ namespace FifthTask.Controllers
                     Description = product.Desctiption, 
                 });
                 this.productRep.Save();
-                return View("EditRecords");
+                return View();
             }
             return View();
         }
@@ -93,7 +91,7 @@ namespace FifthTask.Controllers
             if (ModelState.IsValid) {
                 productRep.Delete(info.ElementId);
                 productRep.Save();
-                return View("EditRecords");
+                return View();
             }
             return View();
         }
@@ -120,7 +118,7 @@ namespace FifthTask.Controllers
 
                 this.productRep.Save();
                 this.saleRep.Save();
-                return View("EditRecords");
+                return View();
                     }
             return View();
         }
