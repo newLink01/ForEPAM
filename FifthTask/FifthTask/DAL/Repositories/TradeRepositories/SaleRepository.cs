@@ -14,6 +14,10 @@ namespace FifthTask.DAL.Repositories
             this.context = new TradeEntities();
         }
 
+        public Sale CreateStandAloneElement() {
+            return new Sale();
+        }
+
         public IEnumerable<Sale> GetAll()
         {
             return context.Sales;

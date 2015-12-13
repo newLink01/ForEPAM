@@ -14,6 +14,10 @@ namespace FifthTask.DAL.Repositories
             context = new TradeEntities();
         }
 
+        public Manager CreateStandaloneElement() {
+            return new Manager();
+        }
+
         public IEnumerable<Manager> GetAll()
         {
             return context.Managers;

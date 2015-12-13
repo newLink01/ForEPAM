@@ -75,6 +75,8 @@ namespace FifthTask.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
+            SimpleMembershipProvider provedier = new SimpleMembershipProvider();
+            
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
@@ -82,7 +84,7 @@ namespace FifthTask.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                   
+                    
                     return RedirectToAction("Workplace", "Trade");
                 }
                 catch (MembershipCreateUserException e)

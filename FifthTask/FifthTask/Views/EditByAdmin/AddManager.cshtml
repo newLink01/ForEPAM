@@ -26,9 +26,30 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add manager" class="btn btn-default"/>
+                <input type="submit" value="Add manager" class="btn btn-default" onclick="CheckManagerInfo()"/>
             </div>
         </div>
     </div>
 }
+
+<script>
+    function CheckManagerInfo() {
+        var name = document.getElementById('ManagerName');
+        var sername = document.getElementById('ManagerSername');
+
+        if (name.value.length < 2 || name.value.length > 20) {
+            name.value = null;
+            alert("Enter the correct name.");
+            return;
+        }
+        if (sername.value.length < 2 || sername.value.length > 30) {
+            sername.value = null;
+            alert("Enter the correct sername.")
+            return;
+        }
+            alert("Manager " + name.value + " " + sername.value + " successfully added.");
+            return;
+        
+    }
+</script>
 

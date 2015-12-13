@@ -17,18 +17,40 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Desctiption, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Desctiption, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Desctiption, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add product" class="btn btn-default" />
+                <input type="submit" value="Add product" class="btn btn-default" onclick="CheckProductInfo()" />
             </div>
         </div>
     </div>
 }
+
+<script>
+
+    function CheckProductInfo() {
+        var name = document.getElementById('ProductName');
+        var description = document.getElementById('Description');
+
+        if (name.value.length < 5 || name.value.length > 100) {
+            name.value = null;
+            alert("Enter the correct name.");
+            return;
+        }
+        if (description.value.length > 200) {
+            description.value = null;
+            alert("Enter a description shorter.")
+            return;
+        }
+        alert("Product " + name.value  + " successfully added.");
+        return;
+
+    }
+    </script>
 

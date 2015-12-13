@@ -13,7 +13,7 @@ namespace FifthTask.Models
         public string ProductName { set; get; }
 
         [MaxLength(200)]
-        public string Desctiption { set; get; }
+        public string Description { set; get; }
 
     }
 }

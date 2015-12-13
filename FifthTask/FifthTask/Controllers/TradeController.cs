@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using FifthTask.DAL.Repositories;
 using FifthTask.Models;
+using System.ComponentModel.DataAnnotations;
 namespace FifthTask.Controllers
 {
+    
     public class TradeController : Controller
     {
-        //
+        
         // GET: /Trade/
        // [Authorize]
         private SaleRepository saleRep;
@@ -74,6 +76,7 @@ namespace FifthTask.Controllers
             
             return View();
         }
+        
         public ActionResult EditRecords() {
 
             return View();

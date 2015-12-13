@@ -8,6 +8,7 @@ using FifthTask.DAL.Repositories;
 using FifthTask.DAL.Entities;
 namespace FifthTask.Controllers
 {
+    
     public class EditByAdminController : Controller
     {
         
@@ -73,7 +74,7 @@ namespace FifthTask.Controllers
                 this.productRep.Create(new Product()
                 {
                     Name = product.ProductName,
-                    Description = product.Desctiption, 
+                    Description = product.Description, 
                 });
                 this.productRep.Save();
                 return View();
@@ -99,26 +100,34 @@ namespace FifthTask.Controllers
 
         [HttpGet]
         public ActionResult AddSale() {
+           
             return View();
         }
+
         [HttpPost]
         public ActionResult AddSale(SaleModel sale) { //check for AmountForSale
             if (ModelState.IsValid && sale != null) {
 
-                
-                
-                this.saleRep.Create(new Sale()
-                {
-                    Manager = sale.ManagerId,
-                    Product = sale.ProductId,
-                    AmountForSale = sale.AmountForSale,
-                    CostPerUnit = sale.CostPerUnit,
-                    DateOfSale = DateTime.Now,
-                });
+                var forAddSale = saleRep.CreateStandAloneElement();
 
-                this.productRep.Save();
-                this.saleRep.Save();
-                return View();
+                foreach (var manager in managerRep.GetAll()) {
+                    if (sale.ManagerId == manager.ManagerId)
+                        forAddSale.Manager = sale.ManagerId;
+                }
+                foreach (var product in productRep.GetAll()) {
+                    if (sale.ProductId == product.ProductId)
+                        forAddSale.Product = sale.ProductId;
+                }
+                forAddSale.AmountForSale = sale.AmountForSale;
+                forAddSale.CostPerUnit = sale.CostPerUnit;
+                forAddSale.DateOfSale = sale.DateOfSale;
+
+                if (forAddSale.Manager != null && forAddSale.Product != null)
+                {
+                    //this.productRep.Save();
+                    this.saleRep.Save();
+                    return View();
+                }
                     }
             return View();
         }
