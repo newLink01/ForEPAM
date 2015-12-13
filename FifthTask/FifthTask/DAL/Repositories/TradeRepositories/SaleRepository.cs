@@ -14,7 +14,7 @@ namespace FifthTask.DAL.Repositories
             this.context = new TradeEntities();
         }
 
-        public Sale CreateStandAloneElement() {
+        public Sale CreateStandaloneElement() {
             return new Sale();
         }
 

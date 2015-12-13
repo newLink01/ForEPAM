@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using FifthTask.Models;
 using FifthTask.DAL.Repositories;
-using FifthTask.DAL.Entities;
 namespace FifthTask.Controllers
 {
     
@@ -41,7 +40,11 @@ namespace FifthTask.Controllers
            
             if (manager!=null && ModelState.IsValid)
             {
-                managerRep.Create(new Manager() { Name = manager.ManagerName, Sername = manager.ManagerSername});
+                var forAddManager = managerRep.CreateStandaloneElement();
+                
+                forAddManager.Name = manager.ManagerName;
+                forAddManager.Sername = manager.ManagerSername;
+                managerRep.Create(forAddManager);
                 managerRep.Save();
                 return View();
             }
@@ -71,11 +74,11 @@ namespace FifthTask.Controllers
         public ActionResult AddProduct(ProductModel product) {
             if (ModelState.IsValid && product != null) {
 
-                this.productRep.Create(new Product()
-                {
-                    Name = product.ProductName,
-                    Description = product.Description, 
-                });
+                var forAddProduct = productRep.CreateStandaloneElement();
+                forAddProduct.Name = product.ProductName;
+                forAddProduct.Description = product.Description;
+
+                productRep.Create(forAddProduct);
                 this.productRep.Save();
                 return View();
             }
@@ -108,23 +111,34 @@ namespace FifthTask.Controllers
         public ActionResult AddSale(SaleModel sale) { //check for AmountForSale
             if (ModelState.IsValid && sale != null) {
 
-                var forAddSale = saleRep.CreateStandAloneElement();
+                var forAddSale = saleRep.CreateStandaloneElement();
+                bool ManagerExist = false;
+                bool ProductExist = false;
 
                 foreach (var manager in managerRep.GetAll()) {
                     if (sale.ManagerId == manager.ManagerId)
+                    {
                         forAddSale.Manager = sale.ManagerId;
+                        ManagerExist = true;
+                    }
                 }
                 foreach (var product in productRep.GetAll()) {
-                    if (sale.ProductId == product.ProductId)
+                    if (sale.ProductId == product.ProductId) {
                         forAddSale.Product = sale.ProductId;
+                        ProductExist = true;
+                    }
+                        
                 }
+
+
                 forAddSale.AmountForSale = sale.AmountForSale;
                 forAddSale.CostPerUnit = sale.CostPerUnit;
                 forAddSale.DateOfSale = sale.DateOfSale;
 
-                if (forAddSale.Manager != null && forAddSale.Product != null)
+                if (ManagerExist && ProductExist)
                 {
                     //this.productRep.Save();
+                    this.saleRep.Create(forAddSale);
                     this.saleRep.Save();
                     return View();
                 }
@@ -141,27 +155,17 @@ namespace FifthTask.Controllers
             if (ModelState.IsValid && info != null) {
                 saleRep.Delete(info.ElementId);
                 saleRep.Save();
-                return View("EditRecords");
+                return View();
             }
             return View();
         }
 
-        [HttpGet]
-        public ActionResult EditProduct() {
-            return View();
-        }
+      
 
 
 
 
-
-
-        [HttpGet]
-        public ActionResult AddRole() { 
-            
-            return View();
-        }
-
+       
 
     }
 }
