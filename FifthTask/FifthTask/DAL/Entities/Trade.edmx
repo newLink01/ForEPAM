@@ -19,8 +19,6 @@
           </Key>
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="TotalNumber" Type="int" Nullable="false" />
-          <Property Name="CostPerUnit" Type="float" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Sale">
@@ -91,8 +89,6 @@
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TotalNumber" Type="Int32" Nullable="false" />
-          <Property Name="CostPerUnit" Type="Double" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_ToProduct" FromRole="Product" ToRole="Sale" />
         </EntityType>
@@ -166,8 +162,6 @@
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="TotalNumber" ColumnName="TotalNumber" />
-                <ScalarProperty Name="CostPerUnit" ColumnName="CostPerUnit" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>

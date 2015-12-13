@@ -74,12 +74,10 @@ namespace FifthTask.Controllers
             
             return View();
         }
-
         public ActionResult EditRecords() {
 
             return View();
         }
-
         private IEnumerable<FormattedSale> FormatSales() {
 
             List<FormattedSale> FormattedSalesCollection = new List<FormattedSale>();
@@ -106,12 +104,15 @@ namespace FifthTask.Controllers
         }
         
 
+        [HttpGet]
         public ActionResult ShowManagers() {
             ViewBag.ManagerCollection = managerRep.GetAll();
             return View();
         }
+        
+        [HttpGet]
         public ActionResult ShowProducts() {
-
+           
             ViewBag.ProductCollection = productRep.GetAll();
 
             return View();

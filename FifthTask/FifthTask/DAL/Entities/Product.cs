@@ -22,8 +22,6 @@ namespace FifthTask.DAL.Entities
     
         public int ProductId { get; set; }
         public string Name { get; set; }
-        public int TotalNumber { get; set; }
-        public double CostPerUnit { get; set; }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -75,9 +75,7 @@ namespace FifthTask.Controllers
                 this.productRep.Create(new Product()
                 {
                     Name = product.ProductName,
-                    CostPerUnit = product.CostPerUnit,
-                    Description = product.Desctiption,
-                    TotalNumber = product.TotalNumber   
+                    Description = product.Desctiption, 
                 });
                 this.productRep.Save();
                 return View("EditRecords");
@@ -109,11 +107,8 @@ namespace FifthTask.Controllers
         public ActionResult AddSale(SaleModel sale) { //check for AmountForSale
             if (ModelState.IsValid && sale != null) {
 
-                if ((productRep.GetElement(sale.ProductId).TotalNumber - sale.AmountForSale) < 0) {
-                  
-                    return View();
-                }
-                productRep.GetElement(sale.ProductId).TotalNumber -= sale.AmountForSale;
+                
+                
                 this.saleRep.Create(new Sale()
                 {
                     Manager = sale.ManagerId,
