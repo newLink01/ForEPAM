@@ -2,10 +2,10 @@
 
 
 
-<div>
-    @Html.ActionLink("Edit records", "../EditByAdmin/EditRecords")
-    @Html.ActionLink("Edit roles", "../EditByAdmin/EditRoles")
-    @Html.ActionLink("Show managers","ShowManagers")
-    @Html.ActionLink("Show products", "ShowProducts")
-    @Html.ActionLink("Show sales","ShowSales")
+<div>  
+    <button class="btn btn-default" onclick="GoToUrlBlank('../EditByAdmin/EditRecords')">Edit records</button>
+    <button class="btn btn-default" onclick="GoToUrlBlank('../EditByAdmin/EditRoles')">Edit roles</button>
+    <button class="btn btn-default" onclick="GoToUrlBlank('../Trade/ShowManagers')">Show managers</button>
+    <button class="btn btn-default" onclick="GoToUrlBlank('../Trade/ShowProducts')">Show products</button>
+    <button class="btn btn-default" onclick="GoToUrlBlank('../Trade/ShowSales')">Show sales</button>
 </div>

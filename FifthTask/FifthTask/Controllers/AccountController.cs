@@ -37,7 +37,8 @@ namespace FifthTask.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("Workplace","Trade");
             }
 
             // If we got this far, something failed, redisplay form
@@ -81,7 +82,8 @@ namespace FifthTask.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                   
+                    return RedirectToAction("Workplace", "Trade");
                 }
                 catch (MembershipCreateUserException e)
                 {
