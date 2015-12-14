@@ -134,6 +134,9 @@ namespace FifthTask.Controllers
         }
 
 
+
+
+
         ~TradeController() {
             this.managerRep.Dispose();
             this.productRep.Dispose();
