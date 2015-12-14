@@ -20,10 +20,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Remove manager" class="btn btn-default" />
+                <input type="submit" value="Remove manager" class="btn btn-default" onclick="ShowMessage()" />
             </div>
         </div>
     </div>
 }
 
+<script>
+    function ShowMessage() {
+        alert('You tried to delete a record of the manager. Check the list of managers.');
+    }
 
+</script>
