@@ -8,7 +8,7 @@ using FifthTask.DAL.Repositories;
 using System.ComponentModel.DataAnnotations;
 namespace FifthTask.Controllers
 {
-    
+    [Authorize(Roles="Admin")]
     public class EditByAdminController : Controller
     {
         

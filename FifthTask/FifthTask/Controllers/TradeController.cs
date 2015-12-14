@@ -8,7 +8,7 @@ using FifthTask.Models;
 using System.ComponentModel.DataAnnotations;
 namespace FifthTask.Controllers
 {
-    
+    [Authorize]
     public class TradeController : Controller
     {
         
@@ -44,8 +44,11 @@ namespace FifthTask.Controllers
             List<FormattedSale> BeforeSort = this.FormatSales().ToList();
 
             switch (filter) {
-                case "Manager": {
+                case "ManagerName": {
                     return BeforeSort.OrderBy(x=>x.ManagerName);
+                }
+                case "ManagerSername": {
+                    return BeforeSort.OrderBy(x => x.ManagerSername);
                 }
                 case "Date": {
                     return BeforeSort.OrderBy(x => x.DateOfSale);  
