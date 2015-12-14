@@ -2,5 +2,5 @@
     window.open(url, '_blank');
 }
 function GoToUrlSelf(url) {
-    window.open(url);
+    document.location.href = url;
 }
