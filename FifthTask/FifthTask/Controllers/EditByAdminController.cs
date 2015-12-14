@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FifthTask.Models;
 using FifthTask.DAL.Repositories;
+using System.ComponentModel.DataAnnotations;
 namespace FifthTask.Controllers
 {
     
@@ -160,8 +161,12 @@ namespace FifthTask.Controllers
             return View();
         }
 
-      
 
+        ~EditByAdminController() {
+            this.managerRep.Dispose();
+            this.productRep.Dispose();
+            this.saleRep.Dispose();
+            }
 
 
 

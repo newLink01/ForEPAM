@@ -75,7 +75,7 @@ namespace FifthTask.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
-            SimpleMembershipProvider provedier = new SimpleMembershipProvider();
+            
             
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace FifthTask.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    
+                    //this.SeedMembership();
                     return RedirectToAction("Workplace", "Trade");
                 }
                 catch (MembershipCreateUserException e)
@@ -96,7 +96,33 @@ namespace FifthTask.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+       /* private void SeedMembership()
+        {
 
+            SimpleRoleProvider roles = new SimpleRoleProvider();
+            SimpleMembershipProvider membership = new SimpleMembershipProvider();
+
+
+            if (!roles.RoleExists("Admin"))
+                roles.CreateRole("Admin");
+
+            if (!roles.RoleExists("User"))
+                roles.CreateRole("User");
+
+
+            if (membership.GetUser("Admin", false) == null)
+            {
+                membership.CreateUserAndAccount("Admin", "Admin");
+            }
+
+            List<string> rolesForUser = new List<string>(roles.GetRolesForUser("Admin"));
+            //if (!roles.GetRolesForUser("Admin").Contains("Admin"))
+            if (!rolesForUser.Contains("Admin"))
+            {
+                roles.AddUsersToRoles(new[] { "Admin" }, new[] { "Admin" });
+            }
+        }
+        */
         //
         // POST: /Account/Disassociate
 
